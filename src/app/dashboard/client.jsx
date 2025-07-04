@@ -5,7 +5,7 @@ export default function DashboardClientSide()
 {
     return (
         <>
-            <div className="items-center">
+            <div className="flex justify-center">
                 <p>Ini Page Dashboard</p>
             </div>
         </>

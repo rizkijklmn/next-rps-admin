@@ -1,20 +1,18 @@
 // app/dashboard/page.jsx
-import { Footer } from "flowbite-react";
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
-import { FooterMenu } from "../components/menu/Footer";
-import DashboardClientSide from "./client";
+import CplClientSide from "./client";
 
 export const metadata = {
-  title: "Dashboard",
-  description: "Welcome to dashboard",
+  title: "CPL",
+  description: "Welcome to cpl",
 };
 
-export default async function Dashboard() {
+export default async function Cpl() {
   return (
     <>
       <NavbarMenu />
-      
+
       <div className="flex min-h-screen">
         {/* Sidebar Desktop */}
         <aside className="hidden md:block w-64">
@@ -23,10 +21,10 @@ export default async function Dashboard() {
 
         {/* Main Content */}
         <main className="flex-1 p-4">
-          <DashboardClientSide />
-
+          <CplClientSide />
         </main>
       </div>
+    
     </>
   );
 }

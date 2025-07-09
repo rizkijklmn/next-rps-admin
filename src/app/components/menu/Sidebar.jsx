@@ -7,30 +7,17 @@ import {
   Drawer,
   DrawerHeader,
   DrawerItems,
-  HomeIcon,
-  HRText,
   Sidebar,
-  SidebarCollapse,
   SidebarItem,
   SidebarItemGroup,
   SidebarItems,
-  TextInput,
 } from "flowbite-react";
 import {
-  HiChartPie,
-  HiCheckCircle,
-  HiClipboard,
-  HiCollection,
-  HiDocument,
-  HiDocumentDownload,
-  HiDocumentText,
-  HiInformationCircle,
-  HiLogin,
-  HiPencil,
-  HiSearch,
-  HiShoppingBag,
-  HiUsers,
+  HiOutlineCheck,
+  HiOutlineClipboardList,
+  HiOutlineDocumentText,
 } from "react-icons/hi";
+import { IoHomeOutline } from "react-icons/io5";
 
 export default function SidebarMenu({ mode = "desktop" }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,17 +33,16 @@ export default function SidebarMenu({ mode = "desktop" }) {
           )} */}
           <SidebarItems>
             <SidebarItemGroup>
-              <SidebarItem href="/" icon={HomeIcon}>Dashboard</SidebarItem>
+              <SidebarItem href="/" icon={IoHomeOutline}>Dashboard</SidebarItem>
             </SidebarItemGroup>
-            
+
             <SidebarItemGroup>
               <h6 className="text-base font-semibold dark:text-white">Kurikulum</h6>
-              {/* <SidebarItem href="#" icon={HiClipboard}>Daftar Kurikulum</SidebarItem> */}
-              <SidebarItem href="/cpl" icon={HiCheckCircle}>CPL</SidebarItem>
-              <SidebarCollapse label="Mata Kuliah" icon={HiDocumentText}>
-                <SidebarItem href="/products" >Daftar Mata Kuliah</SidebarItem>
-                <SidebarItem href="#">Mata Kuliah Prasyarat</SidebarItem>
-              </SidebarCollapse>
+              <SidebarItem href="/matakuliah" icon={HiOutlineDocumentText}>Mata Kuliah</SidebarItem>
+              <SidebarItem href="/cpl" icon={HiOutlineCheck}>CPL</SidebarItem>
+              <SidebarItem href="/cpmk" icon={HiOutlineCheck}>CPMK</SidebarItem>
+              <SidebarItem href="/sub_cpmk" icon={HiOutlineCheck}>Sub-CPMK</SidebarItem>
+              <SidebarItem href="/rps" icon={HiOutlineClipboardList}>RPS</SidebarItem>
             </SidebarItemGroup>
             {/* <SidebarItemGroup>
               <SidebarItem href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>Docs</SidebarItem>

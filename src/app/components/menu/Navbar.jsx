@@ -16,7 +16,7 @@ import SidebarMenu from "./Sidebar"; // Import SidebarMenu agar tombol drawer di
 export default function NavbarMenu() {
   return (
     <>
-      <Navbar fluid rounded className="bg-gray-50">
+      <Navbar fluid rounded className="">
         <NavbarBrand href="/">
           <img src="/favicon.ico" className="mr-3 h-6 sm:h-9" alt="UAI Icon"/>
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">

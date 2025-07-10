@@ -1,8 +1,8 @@
 import { Button } from "flowbite-react";
-import Link from "next/link";
 import { IoAddSharp } from "react-icons/io5";
+import Link from "next/link";
 
-function TambahButton() {
+function AddButton() {
     return (
         <Link
             type="button"
@@ -15,7 +15,7 @@ function TambahButton() {
     )
 }
 
-function TampilkanButton() {
+function ShowButton() {
     return (
         <Button
             type="button"
@@ -26,4 +26,4 @@ function TampilkanButton() {
     )
 }
 
-export { TambahButton, TampilkanButton };
+export { AddButton, ShowButton };

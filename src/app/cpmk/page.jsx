@@ -1,21 +1,20 @@
 // app/dashboard/page.jsx
-import { Footer } from "flowbite-react";
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
-import { FooterMenu } from "../components/menu/Footer";
-import DashboardClientSide from "./client";
+import CPMKClientSide from "./client";
 
 export const metadata = {
-  title: "Dashboard",
-  description: "Welcome to dashboard",
+  title: "Sub CPMK",
+  description: "Welcome to sub cpmk",
 };
 
-export default async function Dashboard() {
+export default async function CPMK() {
   return (
     <>
       <NavbarMenu />
       
       <div className="flex min-h-screen">
+        
         {/* Sidebar Desktop */}
         <aside className="hidden md:block w-64">
           <SidebarMenu mode="desktop" />
@@ -23,7 +22,7 @@ export default async function Dashboard() {
 
         {/* Main Content */}
         <main className="flex-1 p-4">
-          <DashboardClientSide />
+          <CPMKClientSide />
 
         </main>
       </div>

@@ -3,12 +3,12 @@
 
 import { Card } from "flowbite-react"
 
-export default function DashboardClientSide() {
+export default function RTMClientSide() {
     return (
             <div className="mx-10 my-3">
-                {/* <div className="font-bold text-3xl pb-5">
-                    <p>Halaman Dasbor</p>
-                </div> */}
+                <div className="font-bold text-3xl pb-5">
+                    <p>Halaman Rencana Tugas Mahasiswa</p>
+                </div>
                 <Card>
                     <div>
                         <p className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">

@@ -1,8 +1,6 @@
 // app/dashboard/page.jsx
-import { Footer } from "flowbite-react";
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
-import { FooterMenu } from "../components/menu/Footer";
 import DashboardClientSide from "./client";
 
 export const metadata = {

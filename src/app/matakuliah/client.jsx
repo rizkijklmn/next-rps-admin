@@ -2,10 +2,17 @@
 "use client"
 
 import { Card, Dropdown, DropdownItem } from "flowbite-react"
-import { TampilkanButton } from "../components/buttons"
-import { TableCpl } from "../components/tables"
+import { ShowButton } from "../components/buttons"
+import { TableCpl, TableMatakuliah } from "../components/tables"
+import { useState } from "react";
 
-export default function CplClientSide() {
+export default function MatakuliahClientSide() {
+
+    const kurikulum = ["2018", "2020", "2022", "2024"];
+    const prodi = ["S-1 Informatika", "S-1 Bioteknologi", "S-1 Teknik Elektro", "S-1 Teknik Industri"];
+
+    const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
+    const [stateProdi, setStateProdi] = useState("-- Pilih Program Studi --");
 
     return (
         <main>
@@ -16,27 +23,32 @@ export default function CplClientSide() {
                 <form className="flex my-7 justify-center">
                     <Card className="flex items-center w-auto bg-gray-50">
                         <div className="flex items-center gap-5">
-                            <p>Kurikulum</p>
-                            <Dropdown color={"light"} className="w-130 justify-between" label="Pilih" size="lg">
-                                <DropdownItem>2018</DropdownItem>
-                                <DropdownItem>2020</DropdownItem>
-                                <DropdownItem>2022</DropdownItem>
-                                <DropdownItem>2024</DropdownItem>
+
+                            <p className="font-bold">Kurikulum</p>
+                            <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="lg">
+                                {kurikulum.map((kurikulum, i_kurikulum) => (
+                                    <DropdownItem key={i_kurikulum} onClick={() => setStateKurikulum(kurikulum)}>{kurikulum}</DropdownItem>
+                                ))}
                             </Dropdown>
-                            <p>Program Studi</p>
-                            <Dropdown color={"light"} className="w-130 justify-between" label="Pilih" size="lg">
-                                <DropdownItem>S-1 Informatika</DropdownItem>
-                                <DropdownItem>S-1 Bioteknologi</DropdownItem>
-                                <DropdownItem>S-1 Teknik Elektro</DropdownItem>
-                                <DropdownItem>S-1 Teknik Industri</DropdownItem>
+
+                            {/* Vertical divider */}
+                            <div
+                                className="h-full w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400">
+                            </div>
+
+                            <p className="font-bold">Program Studi</p>
+                            <Dropdown color={"light"} className="w-100 justify-between" label={stateProdi} size="lg">
+                                {prodi.map((prodi, i_prodi) => (
+                                    <DropdownItem key={i_prodi} onClick={() => setStateProdi(prodi)}>{prodi}</DropdownItem>
+                                ))}
                             </Dropdown>
-                            <TampilkanButton />
+                            <ShowButton />
                             {/* <Button size="lg" color={"green"}>Tampilkan</Button> */}
                         </div>
                     </Card>
                 </form>
                 <Card>
-                    <TableCpl />
+                    <TableMatakuliah />
                 </Card>
             </div>
         </main>

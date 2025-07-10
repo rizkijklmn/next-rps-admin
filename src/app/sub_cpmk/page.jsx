@@ -1,17 +1,18 @@
-// app/products/page.jsx
+// app/dashboard/page.jsx
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
-import MatakuliahClientSide from "./client";
+import SubCPMKClientSide from "./client";
 
 export const metadata = {
-  title: "RPS & RTM UAI - Matakuliah",
-  description: "Welcome to matakuliah",
+  title: "Sub CPMK",
+  description: "Welcome to sub cpmk",
 };
 
-export default async function Matakuliah() {
+export default async function SubCPMK() {
   return (
     <>
       <NavbarMenu />
+      
       <div className="flex min-h-screen">
         {/* Sidebar Desktop */}
         <aside className="hidden md:block w-64">
@@ -20,7 +21,8 @@ export default async function Matakuliah() {
 
         {/* Main Content */}
         <main className="flex-1 p-4">
-          <MatakuliahClientSide />
+          <SubCPMKClientSide />
+
         </main>
       </div>
     </>

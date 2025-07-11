@@ -1,4 +1,4 @@
-// app/products/page.jsx
+// app/matakuliah/page.jsx
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
 import MatakuliahClientSide from "./client";

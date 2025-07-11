@@ -50,21 +50,21 @@ export default function SidebarMenu({ mode = "desktop" }) {
               <SidebarItem href="/cpmk" active={currentPath === "/cpmk"} icon={HiOutlineCheck}>CPMK</SidebarItem>
               <SidebarItem href="/sub_cpmk" active={currentPath === "/sub_cpmk"} icon={HiOutlineCheck}>Sub-CPMK</SidebarItem>
               <SidebarItem href="/rpsemester" active={(currentPath === "/rpsemester")} icon={HiOutlineClipboardList}>RP Semester</SidebarItem>
-            <SidebarItem href="/rpmingguan" active={currentPath === "/rpmingguan"} icon={HiOutlineClipboardList}>RP Mingguan</SidebarItem>
-            <SidebarItem href="/rtm" active={currentPath === "/rtm"} icon={HiOutlineClipboardCopy}>RTM</SidebarItem>
-          </SidebarItemGroup>
+              <SidebarItem href="/rpmingguan" active={currentPath === "/rpmingguan"} icon={HiOutlineClipboardList}>RP Mingguan</SidebarItem>
+              <SidebarItem href="/rtm" active={currentPath === "/rtm"} icon={HiOutlineClipboardCopy}>RTM</SidebarItem>
+            </SidebarItemGroup>
 
-          {/* <SidebarItemGroup>
+            {/* <SidebarItemGroup>
               <SidebarItem href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>Docs</SidebarItem>
               <SidebarItem href="https://flowbite-react.com/" icon={HiCollection}>Components</SidebarItem>
               <SidebarItem href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>Help</SidebarItem>
             </SidebarItemGroup> */}
 
-        </SidebarItems>
+          </SidebarItems>
 
+        </div>
       </div>
-    </div>
-      </Sidebar >
+    </Sidebar >
   );
 
   if (mode === "desktop") {

@@ -1,32 +1,22 @@
-// app/dashboard/client.jsx
+// app/cpl/client.jsx
 "use client"
 
 import { Card, Dropdown, DropdownItem } from "flowbite-react"
 import { ShowButton } from "../components/buttons"
 import { TableCpl } from "../components/tables"
 import { useState } from "react";
+import { kurikulum, prodi } from "../components/data";
 
 export default function CplClientSide() {
 
-    const kurikulum = ["2018", "2020", "2022", "2024"];
-    const prodi = ["S-1 Informatika", "S-1 Bioteknologi", "S-1 Teknik Elektro", "S-1 Teknik Industri"];
-
     const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
     const [stateProdi, setStateProdi] = useState("-- Pilih Program Studi --");
-    const matakuliah = [
-        {
-            id: 1,
-            kode_matakuliah: "MATDIS0001",
-            nama_matakuliah: "Matematika Diskrit",
-            sks: 3
-        }
-    ]
 
     return (
         <main>
             <div className="mx-10 my-3">
-                <p className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                    Daftar Mata Kuliah
+                <p className="text-xl font-bold tracking-normal text-gray-900 dark:text-white">
+                    Daftar CPL Program Studi
                 </p>
                 <form className="flex my-7 justify-center">
                     <Card className="flex items-center w-auto bg-gray-50">
@@ -45,9 +35,9 @@ export default function CplClientSide() {
                             </div>
 
                             <p className="font-bold">Program Studi</p>
-                            <Dropdown color={"light"} className="w-100 justify-between" label={stateProdi} size="lg">
+                            <Dropdown color={"light"} className="w-100 text-left justify-between" label={stateProdi} size="lg">
                                 {prodi.map((prodi, i_prodi) => (
-                                    <DropdownItem key={i_prodi} onClick={() => setStateProdi(prodi)}>{prodi}</DropdownItem>
+                                    <DropdownItem className="text-left" key={i_prodi} onClick={() => setStateProdi(prodi)}>{prodi}</DropdownItem>
                                 ))}
                             </Dropdown>
                             <ShowButton />

@@ -1,4 +1,4 @@
-// app/dashboard/page.jsx
+// app/sub_cpmk/page.jsx
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
 import SubCPMKClientSide from "./client";

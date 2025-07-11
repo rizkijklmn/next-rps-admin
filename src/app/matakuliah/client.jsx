@@ -1,15 +1,13 @@
-// app/dashboard/client.jsx
+// app/matakuliah/client.jsx
 "use client"
 
 import { Card, Dropdown, DropdownItem } from "flowbite-react"
 import { ShowButton } from "../components/buttons"
-import { TableCpl, TableMatakuliah } from "../components/tables"
+import { TableMatakuliah } from "../components/tables"
+import { kurikulum, prodi } from "../components/data"
 import { useState } from "react";
 
 export default function MatakuliahClientSide() {
-
-    const kurikulum = ["2018", "2020", "2022", "2024"];
-    const prodi = ["S-1 Informatika", "S-1 Bioteknologi", "S-1 Teknik Elektro", "S-1 Teknik Industri"];
 
     const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
     const [stateProdi, setStateProdi] = useState("-- Pilih Program Studi --");
@@ -17,7 +15,7 @@ export default function MatakuliahClientSide() {
     return (
         <main>
             <div className="mx-10 my-3">
-                <p className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <p className="text-xl font-bold tracking-normal text-gray-900 dark:text-white">
                     Daftar Mata Kuliah
                 </p>
                 <form className="flex my-7 justify-center">

@@ -1,11 +1,10 @@
-// app/dashboard/client.jsx
+// app/rpsemester/client.jsx
 "use client"
 
-import { Card, Dropdown, DropdownItem, Label, TextInput } from "flowbite-react"
+import { Card, Dropdown, DropdownItem, Label, TextInput, HR, Textarea } from "flowbite-react"
+import { listDosen, listMatakuliah } from "../components/data"
 
 export default function RPSemesterClientSide() {
-
-    const listDosen = ["Dosen 1", "Dosen 2", "Dosen 4", "Dosen 5", "Dosen 6", "Dosen 7", "Dosen 8"];
 
     return (
         <div className="mx-10 my-3">
@@ -14,108 +13,116 @@ export default function RPSemesterClientSide() {
             </div>
 
             <Card>
-                <form className="flex flex-col w-1/2 gap-5" action="">
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="tanggal_penyusunan">Tanggal Penyusunan RPS</Label>
-                        </div>
-                        <TextInput type="date" />
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="dosen_pengembang_rps">Dosen Pengembang RPS</Label>
-                        </div>
-                        <Dropdown label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
-                            {
-                                listDosen.map((dosen, i_dosen) => (
-                                    <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"} className="w-full justify-between">{dosen}</DropdownItem>
-                                ))
-                            }
-                        </Dropdown>
-                    </div>
+                <div className="flex w-full justify-center">
+                    <form className="flex flex-col w-3/4 gap-5">
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="dosen_rmk">Dosen Rumpun Mata Kuliah</Label>
+                        {/* Tanggal penyusunan RPS */}
+                        <div className="flex items-center gap-15 justify-center mb-5">
+                            <Label htmlFor="tanggal_penyusunan" className="text-base font-bold">Tanggal Penyusunan RPS</Label>
+                            <TextInput type="date" className="w-54.5" />
                         </div>
-                        <Dropdown label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
-                            {
-                                listDosen.map((dosen, i_dosen) => (
-                                    <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"} className="w-full justify-between">{dosen}</DropdownItem>
-                                ))
-                            }
-                        </Dropdown>
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="dosen_kaprodi">Kepala Program Studi</Label>
+                        {/* Dropdown pemilihan dosen */}
+                        <div className="grid gap-y-5 gap-x-10 mb-6 md:grid-cols-2">
+                            <div>
+                                <div className="mb-2">
+                                    <Label htmlFor="dosen_pengembang_rps" className="text-base font-bold">Dosen Pengembang RPS</Label>
+                                </div>
+                                <Dropdown label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
+                                    {
+                                        listDosen.map((dosen, i_dosen) => (
+                                            <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"}>{dosen}</DropdownItem>
+                                        ))
+                                    }
+                                </Dropdown>
+                            </div>
+
+                            <div>
+                                <div className="mb-2">
+                                    <Label htmlFor="dosen_rmk" className="text-base font-bold">Dosen Rumpun Mata Kuliah</Label>
+                                </div>
+                                <Dropdown id="dosen_rmk" name="dosen_rmk" label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
+                                    {
+                                        listDosen.map((dosen, i_dosen) => (
+                                            <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"} className="w-full justify-between">{dosen}</DropdownItem>
+                                        ))
+                                    }
+                                </Dropdown>
+                            </div>
+
+                            <div>
+                                <div className="mb-2">
+                                    <Label htmlFor="dosen_kaprodi" className="text-base font-bold">Kepala Program Studi</Label>
+                                </div>
+                                <Dropdown id="dosen_kaprodi" name="dosen_kaprodi" label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
+                                    {
+                                        listDosen.map((dosen, i_dosen) => (
+                                            <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"} className="w-full justify-between">{dosen}</DropdownItem>
+                                        ))
+                                    }
+                                </Dropdown>
+                            </div>
+
+                            <div>
+                                <div className="mb-2">
+                                    <Label htmlFor="dosen_pengampu_mk" className="text-base font-bold">Dosen Pengampu Mata Kuliah</Label>
+                                </div>
+                                <Dropdown id="dosen_pengampu_mk" name="dosen_pengampu_mk" label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
+                                    {
+                                        listDosen.map((data, index) => (
+                                            <DropdownItem key={index} size="lg" color={"light"} className="w-full justify-between">{data}</DropdownItem>
+                                        ))
+                                    }
+                                </Dropdown>
+                            </div>
                         </div>
-                        <Dropdown label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
-                            {
-                                listDosen.map((dosen, i_dosen) => (
-                                    <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"} className="w-full justify-between">{dosen}</DropdownItem>
-                                ))
-                            }
-                        </Dropdown>
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="dosen_pengampu">Dosen Pengampu Mata Kuliah</Label>
+                        <div>
+                            <div className="mb-2">
+                                <Label htmlFor="deskripsi_mata_kuliah" className="text-base font-bold">Deskripsi Mata Kuliah</Label>
+                            </div>
+                            <Textarea id="deskripsi_mata_kuliah" name="deskripsi_mata_kuliah" className="rounded-lg p-3 border w-full" rows="4" placeholder="isi deskripsi mata kuliah" />
                         </div>
-                        <Dropdown label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
-                            {
-                                listDosen.map((dosen, i_dosen) => (
-                                    <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"} className="w-full justify-between">{dosen}</DropdownItem>
-                                ))
-                            }
-                        </Dropdown>
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="email">Deskripsi Mata Kuliah</Label>
+                        <div>
+                            <div className="mb-2">
+                                <Label htmlFor="bahan_kajian" className="text-base font-bold">Bahan Kajian</Label>
+                            </div>
+                            <Textarea id="bahan_kajian" name="bahan_kajian" className="rounded-lg p-3 border w-full" rows="4" placeholder="isi bahan kajian" />
                         </div>
-                        <textarea className="rounded-lg p-3 border w-full" rows="4" placeholder="Deskripsi Mata Kuliah"/>
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="email">Bahan Kajian</Label>
+                        <div>
+                            <div className="mb-2">
+                                <Label htmlFor="pustaka_utama" className="text-base font-bold">Pustaka Utama</Label>
+                            </div>
+                            <Textarea id="pustaka_utama" name="pustaka_utama" className="rounded-lg p-3 border w-full" rows="4" placeholder="isi pustaka utama" />
                         </div>
-                        <textarea className="rounded-lg p-3 border w-full" rows="4" placeholder="Deskripsi Mata Kuliah"/>
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="email">Pustaka Utama</Label>
+                        <div>
+                            <div className="mb-2">
+                                <Label htmlFor="pustaka_pendukung" className="text-base font-bold">Pustaka Pendukung</Label>
+                            </div>
+                            <Textarea id="pustaka_pendukung" name="pustaka_pendukung" className="rounded-lg p-3 border w-full" rows="4" placeholder="isi pustaka pendukung" />
                         </div>
-                        <textarea className="rounded-lg p-3 border w-full" rows="4" placeholder="Deskripsi Mata Kuliah"/>
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="email">Pustaka Pendukung</Label>
+                        <div>
+                            <div className="mb-2">
+                                <Label htmlFor="matakuliah_prasyarat" className="text-base font-bold">Mata Kuliah Prasyarat</Label>
+                            </div>
+                            <Dropdown id="matakuliah_prasyarat" name="matakuliah_prasyarat" label="-- Pilih Mata Kuliah --" size="lg" color={"light"} className="w-full justify-between">
+                                {
+                                    listMatakuliah.map((data, index) => (
+                                        <DropdownItem key={index} size="lg" color={"light"} className="w-full justify-between">{data.kode_matakuliah} {data.nama_matakuliah}</DropdownItem>
+                                    ))
+                                }
+                            </Dropdown>
                         </div>
-                        <textarea className="rounded-lg p-3 border w-full" rows="4" placeholder="Deskripsi Mata Kuliah"/>
-                    </div>
 
-                    <div>
-                        <div className="mb-2 block">
-                            <Label htmlFor="matakuliah_prasyarat">Mata Kuliah Prasyarat</Label>
-                        </div>
-                        <Dropdown label="-- Pilih Dosen --" size="lg" color={"light"} className="w-full justify-between">
-                            {
-                                listDosen.map((dosen, i_dosen) => (
-                                    <DropdownItem key={i_dosen} label={dosen} size="lg" color={"light"} className="w-full justify-between">{dosen}</DropdownItem>
-                                ))
-                            }
-                        </Dropdown>
-                    </div>
+                    </form>
 
-                </form>
+                </div>
+
             </Card>
         </div>
     )

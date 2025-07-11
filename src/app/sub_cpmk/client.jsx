@@ -1,4 +1,4 @@
-// app/dashboard/client.jsx
+// app/sub_cpmk/client.jsx
 "use client"
 
 import { Card } from "flowbite-react"

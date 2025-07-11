@@ -1,4 +1,4 @@
-// app/dashboard/page.jsx
+// app/cpl/page.jsx
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
 import CplClientSide from "./client";

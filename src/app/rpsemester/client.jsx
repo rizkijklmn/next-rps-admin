@@ -8,9 +8,13 @@ export default function RPSemesterClientSide() {
 
     return (
         <div className="mx-10 my-3">
-            <div className="font-bold text-3xl pb-5">
+            {/* <div className="font-bold text-3xl pb-5">
                 <p>Halaman Rencana Pembelajaran Semester</p>
-            </div>
+            </div> */}
+
+            <p className="text-xl font-bold pb-5 tracking-normal text-gray-900 dark:text-white">
+                Rencana Pembelajaran Semester
+            </p>
 
             <Card>
 
@@ -18,13 +22,15 @@ export default function RPSemesterClientSide() {
                     <form className="flex flex-col w-3/4 gap-5">
 
                         {/* Tanggal penyusunan RPS */}
-                        <div className="flex items-center gap-15 justify-center mb-5">
+                        <div className="flex items-center gap-10 justify-center mb-0">
                             <Label htmlFor="tanggal_penyusunan" className="text-base font-bold">Tanggal Penyusunan RPS</Label>
                             <TextInput type="date" className="w-54.5" />
                         </div>
 
+                        <HR className="mt-5 mb-5" />
+
                         {/* Dropdown pemilihan dosen */}
-                        <div className="grid gap-y-5 gap-x-10 mb-6 md:grid-cols-2">
+                        <div className="grid gap-y-5 gap-x-10 mb-0 md:grid-cols-2">
                             <div>
                                 <div className="mb-2">
                                     <Label htmlFor="dosen_pengembang_rps" className="text-base font-bold">Dosen Pengembang RPS</Label>
@@ -78,6 +84,9 @@ export default function RPSemesterClientSide() {
                             </div>
                         </div>
 
+                        <HR className="mt-5 mb-5" />
+
+                        {/* Isian Detail Mata Kuliah */}
                         <div>
                             <div className="mb-2">
                                 <Label htmlFor="deskripsi_mata_kuliah" className="text-base font-bold">Deskripsi Mata Kuliah</Label>

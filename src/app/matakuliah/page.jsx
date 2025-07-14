@@ -4,7 +4,7 @@ import SidebarMenu from "../components/menu/Sidebar";
 import MatakuliahClientSide from "./client";
 
 export const metadata = {
-  title: "RPS & RTM UAI - Matakuliah",
+  title: "Matakuliah",
   description: "Welcome to matakuliah",
 };
 

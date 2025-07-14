@@ -4,8 +4,8 @@ import SidebarMenu from "../components/menu/Sidebar";
 import CPMKClientSide from "./client";
 
 export const metadata = {
-  title: "Sub CPMK",
-  description: "Welcome to sub cpmk",
+  title: "CPMK",
+  description: "Welcome to cpmk",
 };
 
 export default async function CPMK() {

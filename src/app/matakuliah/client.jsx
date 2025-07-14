@@ -10,7 +10,7 @@ import { useState } from "react";
 export default function MatakuliahClientSide() {
 
     const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
-    const [stateProdi, setStateProdi] = useState("-- Pilih Program Studi --");
+    // const [stateProdi, setStateProdi] = useState("-- Pilih Program Studi --");
 
     return (
         <main>
@@ -30,7 +30,7 @@ export default function MatakuliahClientSide() {
                             </Dropdown>
 
                             {/* Vertical divider */}
-                            <div
+                            {/* <div
                                 className="h-full w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400">
                             </div>
 
@@ -39,7 +39,7 @@ export default function MatakuliahClientSide() {
                                 {prodi.map((prodi, i_prodi) => (
                                     <DropdownItem key={i_prodi} onClick={() => setStateProdi(prodi)}>{prodi}</DropdownItem>
                                 ))}
-                            </Dropdown>
+                            </Dropdown> */}
                             <ShowButton />
                             {/* <Button size="lg" color={"green"}>Tampilkan</Button> */}
                         </div>

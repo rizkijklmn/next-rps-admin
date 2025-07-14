@@ -2,16 +2,15 @@ import { Button } from "flowbite-react";
 import { IoAddSharp } from "react-icons/io5";
 import Link from "next/link";
 
-function AddButton() {
+function AddButton({ children }) {
     return (
-        <Link
+        <Button
             type="button"
-            href=""
-            className="inline-flex items-center space-x-1 text-white bg-blue-700 hover:bg-blue-800 px-5 py-[9px] rounded-sm text-sm"
+            className="inline-flex cursor-pointer items-center space-x-1 text-white bg-blue-700 hover:bg-blue-800 px-5 py-[9px] rounded-sm text-sm"
         >
-            <IoAddSharp size={20} />
+            <IoAddSharp size={15} />
             Tambah
-        </Link>
+        </Button>
     )
 }
 

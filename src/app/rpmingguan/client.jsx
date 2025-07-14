@@ -7,9 +7,13 @@ import { listDosen, listMatakuliah } from "../components/data"
 export default function RPMingguanClientSide() {
     return (
         <div className="mx-10 my-3">
-            <div className="font-bold text-3xl pb-5">
+            {/* <div className="font-bold text-3xl pb-5">
                 <p>Halaman Rencana Pembelajaran Mingguan</p>
-            </div>
+            </div> */}
+
+            <p className="text-xl font-bold pb-5 tracking-normal text-gray-900 dark:text-white">
+                Rencana Pembelajaran Mingguan
+            </p>
 
             <Card>
                 <div className="flex w-full justify-center">
@@ -74,12 +78,12 @@ export default function RPMingguanClientSide() {
                                 <div className="my-2 block">
                                     <Label htmlFor="luring_bentuk" className="text-base">Bentuk</Label>
                                 </div>
-                                <TextInput id="luring_bentuk" name="luring_bentuk" type="text" className="mb-5"/>
+                                <TextInput id="luring_bentuk" name="luring_bentuk" type="text" className="mb-5" />
 
                                 <div className="my-2 block">
                                     <Label htmlFor="luring_metode" className="text-base">Metode</Label>
                                 </div>
-                                <TextInput id="luring_metode" name="luring_metode" type="text" className="mb-5"/>
+                                <TextInput id="luring_metode" name="luring_metode" type="text" className="mb-5" />
 
                                 <div className="my-2 block">
                                     <Label htmlFor="luring_pb" className="text-base">PB</Label>
@@ -92,17 +96,17 @@ export default function RPMingguanClientSide() {
                                 <div className="my-2 block">
                                     <Label htmlFor="daring_metode" className="text-base">Metode</Label>
                                 </div>
-                                <TextInput id="daring_metode" name="daring_metode" type="text" className="mb-5"/>
+                                <TextInput id="daring_metode" name="daring_metode" type="text" className="mb-5" />
 
                                 <div className="my-2 block">
                                     <Label htmlFor="daring_km" className="text-base">KM</Label>
                                 </div>
-                                <TextInput id="daring_km" name="daring_km" type="text" className="mb-5"/>
+                                <TextInput id="daring_km" name="daring_km" type="text" className="mb-5" />
 
                                 <div className="my-2 block">
                                     <Label htmlFor="daring_penugasan" className="text-base">Penugasan</Label>
                                 </div>
-                                <TextInput id="daring_penugasan" name="daring_penugasan" type="text" className="mb-5"/>
+                                <TextInput id="daring_penugasan" name="daring_penugasan" type="text" className="mb-5" />
 
                                 <div className="my-2 block">
                                     <Label htmlFor="daring_pt" className="text-base">PT</Label>

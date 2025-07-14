@@ -5,8 +5,8 @@ import { listCpl, listMatakuliah } from "./data";
 function TableCpl() {
     return (
         <div>
-            <table className="table-auto w-full min-w-24 text-sm border border-gray-200 text-gray-500 dark:text-gray-300">
-                <thead className="text-base text-black bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <table className="table-auto w-full min-w-24 text-sm border border-gray-300 text-gray-600 dark:text-white">
+                <thead className="text-base text-black bg-gray-100 dark:bg-gray-700 dark:text-white">
                     <tr className="text-center">
                         <th className="px-6 py-3">Kode CPL</th>
                         <th className="px-6 py-3">Rumusan CPL</th>
@@ -17,14 +17,14 @@ function TableCpl() {
                     {
                         listCpl.map((data) => {
                             return (
-                                <tr className="border border-gray-200" key={data.id}>
+                                <tr className="border border-gray-300" key={data.id}>
                                     <td className="flex items-center justify-center px-6 py-3">{data.kodecpl}</td>
                                     <td className="px-6 py-3">{data.rumusancpl}</td>
                                     <td className="flex place-content-center gap-2 px-6 py-3">
-                                        <Button color={"green"} outline>
+                                        <Button className="cursor-pointer" color={"green"} outline>
                                             <IoPencil size={15}/>
                                         </Button>
-                                        <Button color={"red"} outline>
+                                        <Button className="cursor-pointer" color={"red"} outline>
                                             <IoTrash />
                                         </Button>
                                     </td>
@@ -41,8 +41,8 @@ function TableCpl() {
 function TableMatakuliah() {
     return (
         <div>
-            <table className="table-auto w-full min-w-24 text-sm border border-gray-200 text-gray-500 dark:text-gray-300">
-                <thead className="text-base text-black bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <table className="table-auto w-full min-w-24 text-sm border border-gray-300 text-gray-600 dark:text-white">
+                <thead className="text-base text-black bg-gray-100 dark:bg-gray-700 dark:text-white">
                     <tr className="">
                         <th className="px-6 py-5">Kode Mata Kuliah</th>
                         <th className="px-6 py-5">Nama Mata Kuliah</th>
@@ -54,7 +54,7 @@ function TableMatakuliah() {
                     {
                         listMatakuliah.map((data) => {
                             return (
-                                <tr className="border border-gray-200" key={data.id}>
+                                <tr className="border border-gray-300" key={data.id}>
                                     <td className="flex px-6 py-5 items-center justify-center">{data.kode_matakuliah}</td>
                                     <td className="px-6 py-5">{data.nama_matakuliah}</td>
                                     <td className="px-6 py-5 text-center">{data.sks}</td>

@@ -45,7 +45,11 @@ export default function SidebarMenu({ mode = "desktop" }) {
 
             <SidebarItemGroup>
               <h6 className="font-extrabold uppercase tracking-wider dark:text-white">Kurikulum</h6>
+              <h5 className="font-semibold tracking-wider dark:text-white">Menu Kaprodi</h5>
+              <SidebarItem href="/cpl" active={currentPath === "/cpl"} icon={HiOutlineCheck}>CPL</SidebarItem>
               <SidebarItem href="/matakuliah" active={currentPath === "/matakuliah"} icon={HiOutlineDocumentText}>Mata Kuliah</SidebarItem>
+              
+              <h5 className="font-semibold tracking-wider dark:text-white">Menu Pengembang RPS</h5>
               <SidebarItem href="/cpl" active={currentPath === "/cpl"} icon={HiOutlineCheck}>CPL</SidebarItem>
               <SidebarItem href="/cpmk" active={currentPath === "/cpmk"} icon={HiOutlineCheck}>CPMK</SidebarItem>
               <SidebarItem href="/sub_cpmk" active={currentPath === "/sub_cpmk"} icon={HiOutlineCheck}>Sub-CPMK</SidebarItem>

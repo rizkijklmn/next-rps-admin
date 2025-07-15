@@ -2,7 +2,7 @@
 "use client"
 
 import { Card, Dropdown, DropdownItem, Label, Textarea, TextInput } from "flowbite-react"
-import { listDosen } from "../components/data"
+import { listDosen } from "../components/Data"
 
 export default function RTMClientSide() {
     return (

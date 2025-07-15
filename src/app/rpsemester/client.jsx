@@ -2,7 +2,7 @@
 "use client"
 
 import { Card, Dropdown, DropdownItem, Label, TextInput, HR, Textarea } from "flowbite-react"
-import { listDosen, listMatakuliah } from "../components/data"
+import { listDosen, listMatakuliah } from "../components/Data"
 
 export default function RPSemesterClientSide() {
 

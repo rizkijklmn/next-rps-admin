@@ -2,19 +2,21 @@
 "use client"
 
 import { Card, Checkbox, Dropdown, DropdownItem, HR, Label, Textarea, TextInput } from "flowbite-react"
-import { AddButton, ShowButton } from "../components/buttons"
+import { ButtonAdd, ButtonCustom, ButtonShow } from "../components/Button"
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
-import { TableCpl } from "../components/tables"
+import { TableCpl } from "../components/Tables"
 import { useState } from "react";
-import { kurikulum, prodi } from "../components/data";
-import Search from "../components/search";
+import { kurikulum } from "../components/Data";
+import { SearchCPL } from "../components/Search";
 import { IoSearch } from "react-icons/io5";
 import { HiOutlinePlusSm, HiUserAdd } from "react-icons/hi";
+
+
+
 
 export default function CplClientSide() {
 
     const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
-    // const [stateProdi, setStateProdi] = useState("-- Pilih Program Studi --");
 
     const [openModal, setOpenModal] = useState(false);
 
@@ -32,7 +34,7 @@ export default function CplClientSide() {
                     <Card className="flex items-center w-auto bg-gray-50">
                         <div className="flex items-center gap-5">
 
-                            {/* Menu Pilihan Kurikulum */}
+                            {/* Pilihan Kurikulum */}
                             <p className="font-bold">Kurikulum</p>
                             <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="lg">
                                 {kurikulum.map((kurikulum, i_kurikulum) => (
@@ -45,28 +47,34 @@ export default function CplClientSide() {
                                 className="h-full w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400">
                             </div> */}
 
-                            {/* Menu Pilihan Program Studi */}
-                            {/* <p className="font-bold">Program Studi</p>
-                            <Dropdown color={"light"} className="w-100 text-left justify-between" label={stateProdi} size="lg">
-                                {prodi.map((prodi, i_prodi) => (
-                                    <DropdownItem className="text-left" key={i_prodi} onClick={() => setStateProdi(prodi)}>{prodi}</DropdownItem>
-                                ))}
-                            </Dropdown> */}
-                            <ShowButton />
-                            {/* <Button size="lg" color={"green"}>Tampilkan</Button> */}
+                            {/* Tombol tampilkan */}
+                            <ButtonCustom
+                                type={"button"}
+                                className={"inline-flex gap-2 cursor-pointer items-center space-x-1 text-white bg-blue-700 hover:bg-blue-800 px-5 py-[9px] rounded-sm text-sm"}
+                                btnColor={"blue"}
+                                icon={<IoSearch size={15} />}
+                                text={"Tampilkan"}
+                            />
+
                         </div>
                     </Card>
                 </form>
                 <Card>
                     <div className="flex justify-end">
-                        <div className="flex w-1/2 gap-5">
+                        <div className="flex w-[40%] gap-5">
 
-                            <Search />
+                            {/* Form pencarian CPL */}
+                            <SearchCPL />
 
-                            <Button className="cursor-pointer flex items-center gap-1" onClick={() => setOpenModal(true)}>
-                                <HiOutlinePlusSm />
-                                Tambah
-                            </Button>
+                            {/* Tombol modal tambah CPL */}
+                            <ButtonCustom
+                                type={"button"}
+                                className={"cursor-pointer flex items-center gap-1"}
+                                btnColor={"blue"}
+                                onClick={() => setOpenModal(true)}
+                                icon={<HiOutlinePlusSm />}
+                                text={"Tambah"}
+                            />
 
                             <Modal className="p-9" show={openModal} size="2xl" onClose={onCloseModal} popup>
                                 <ModalHeader className="p-6">Tambah Data CPL</ModalHeader>
@@ -95,9 +103,6 @@ export default function CplClientSide() {
                                     <Button className="cursor-pointer" outline color={"red"} onClick={onCloseModal}>Batal</Button>
                                 </ModalFooter>
                             </Modal>
-
-
-
 
                         </div>
                     </div>

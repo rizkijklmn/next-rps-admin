@@ -2,7 +2,7 @@
 "use client"
 
 import { Card, Dropdown, DropdownItem, HR, Label, Textarea, TextInput } from "flowbite-react"
-import { listDosen, listMatakuliah } from "../components/data"
+import { listDosen, listMatakuliah } from "../components/Data"
 
 export default function RPMingguanClientSide() {
     return (

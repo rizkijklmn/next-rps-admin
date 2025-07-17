@@ -5,28 +5,24 @@ import { listCpl, listMatakuliah } from "./Data";
 function TableCpl() {
     return (
         <div>
-            <table className="table-auto w-full min-w-24 text-sm border border-gray-300 text-gray-600 dark:text-white">
-                <thead className="text-base text-black bg-gray-100 dark:bg-gray-700 dark:text-white">
-                    <tr className="text-center">
-                        <th className="px-6 py-3">Kode CPL</th>
-                        <th className="px-6 py-3">Rumusan CPL</th>
-                        <th className="px-6 py-3">Ubah/Hapus</th>
+            <table className="table-auto w-full border border-gray-200 dark:border-gray-600 ">
+                <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600 ">
+                    <tr className="text-base">
+                        <th className="px-5 py-3">Kode CPL</th>
+                        <th className="px-5 py-3">Rumusan CPL</th>
+                        <th className="px-5 py-3">Ubah/Hapus</th>
                     </tr>
                 </thead>
-                <tbody className="">
+                <tbody className="text-sm">
                     {
                         listCpl.map((item) => {
                             return (
-                                <tr className="border border-gray-300" key={item.id}>
-                                    <td className="flex items-center justify-center px-6 py-3">{item.kodecpl}</td>
-                                    <td className="px-6 py-3">{item.rumusancpl}</td>
-                                    <td className="flex place-content-center gap-2 px-6 py-3">
-                                        <Button className="cursor-pointer" color={"green"} outline>
-                                            <IoPencil size={15} />
-                                        </Button>
-                                        <Button className="cursor-pointer" color={"red"} outline>
-                                            <IoTrash />
-                                        </Button>
+                                <tr className="border border-gray-200 dark:border-gray-600" key={item.id}>
+                                    <td className="px-5 py-3 text-center">{item.kodecpl}</td>
+                                    <td className="px-5 py-3">{item.rumusancpl}</td>
+                                    <td className="flex gap-1 px-5 py-3">
+                                        <Button className="cursor-pointer" color={"green"} outline><IoPencil size={15} /></Button>
+                                        <Button className="cursor-pointer" color={"red"} outline><IoTrash /></Button>
                                     </td>
                                 </tr>
                             )

@@ -26,7 +26,12 @@ const listCpl = [
     {
         id: 5,
         kodecpl: "CPL-5",
-        rumusancpl: "Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.",
+        rumusancpl: `Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
+        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
+        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
+        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
+        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
+        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.`,
     }
 ];
 
@@ -37,18 +42,18 @@ const listMatakuliah = [
         nama_matakuliah: "Dasar Pemrograman",
         sks: 3,
     },
-        // {
-        //     id: 2,
-        //     kode_matakuliah: "IF200005",
-        //     nama_matakuliah: "Pemrograman Berorientasi Objek",
-        //     sks: 3,
-        // },
-        // {
-        //     id: 3,
-        //     kode_matakuliah: "IF200006",
-        //     nama_matakuliah: "Praktikum Pemrograman Berorientasi Objek",
-        //     sks: 1,
-        // }
+    // {
+    //     id: 2,
+    //     kode_matakuliah: "IF200005",
+    //     nama_matakuliah: "Pemrograman Berorientasi Objek",
+    //     sks: 3,
+    // },
+    // {
+    //     id: 3,
+    //     kode_matakuliah: "IF200006",
+    //     nama_matakuliah: "Praktikum Pemrograman Berorientasi Objek",
+    //     sks: 1,
+    // }
 ]
 
 export { kurikulum, prodi, listDosen, listCpl, listMatakuliah };

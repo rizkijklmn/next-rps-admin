@@ -16,9 +16,9 @@ import SidebarMenu from "./Sidebar"; // Import SidebarMenu agar tombol drawer di
 export default function NavbarMenu() {
   return (
     <>
-      <Navbar fluid rounded className="">
+      <Navbar fluid className="">
         <NavbarBrand href="/">
-          <img src="/favicon.ico" className="mr-3 h-6 sm:h-9" alt="UAI Icon"/>
+          <img src="https://studentdesk.uai.ac.id/file/images/uai-icon.png" className="mr-3 h-6 sm:h-9" alt="UAI Icon"/>
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             RPS & RTM UAI
           </span>

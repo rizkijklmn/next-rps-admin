@@ -1,23 +1,18 @@
 // app/cpl/client.jsx
 "use client"
 
-import { Card, Checkbox, Dropdown, DropdownItem, HR, Label, Textarea, TextInput } from "flowbite-react"
-import { ButtonAdd, ButtonCustom, ButtonShow } from "../components/Button"
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "flowbite-react";
+import { Card, Dropdown, DropdownItem } from "flowbite-react"
+import { ButtonCustom } from "../components/Button"
 import { TableCpl } from "../components/Tables"
 import { useState } from "react";
 import { kurikulum } from "../components/Data";
 import { SearchCPL } from "../components/Search";
 import { IoSearch } from "react-icons/io5";
-import { HiOutlinePlusSm, HiUserAdd } from "react-icons/hi";
-
-
-
+import { HiOutlinePlusSm } from "react-icons/hi";
+import { TambahCPLModal } from "../components/Modals";
 
 export default function CplClientSide() {
-
     const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
-
     const [openModal, setOpenModal] = useState(false);
 
     function onCloseModal() {
@@ -66,7 +61,7 @@ export default function CplClientSide() {
                             {/* Form pencarian CPL */}
                             <SearchCPL />
 
-                            {/* Tombol modal tambah CPL */}
+                            {/* Tombol open modal tambah CPL */}
                             <ButtonCustom
                                 type={"button"}
                                 className={"cursor-pointer flex items-center gap-1"}
@@ -76,7 +71,15 @@ export default function CplClientSide() {
                                 text={"Tambah"}
                             />
 
-                            <Modal className="p-9" show={openModal} size="2xl" onClose={onCloseModal} popup>
+                            {/* Modal/popup form tambal CPL */}
+                            <TambahCPLModal
+                                show={openModal}
+                                onClose={onCloseModal}
+                                onClick={onCloseModal}
+                            />
+
+                            {/* Kode tanpa component Modals */}
+                            {/* <Modal className="p-9" show={openModal} size="2xl" onClose={onCloseModal} popup>
                                 <ModalHeader className="p-6">Tambah Data CPL</ModalHeader>
                                 <ModalBody>
                                     <div className="space-y-6">                                        <div>
@@ -102,11 +105,12 @@ export default function CplClientSide() {
                                     <Button className="cursor-pointer" color={"green"} onClick={onCloseModal}>Simpan</Button>
                                     <Button className="cursor-pointer" outline color={"red"} onClick={onCloseModal}>Batal</Button>
                                 </ModalFooter>
-                            </Modal>
-
+                            </Modal> */}
                         </div>
                     </div>
+
                     <TableCpl />
+                    
                 </Card>
             </div>
         </main>

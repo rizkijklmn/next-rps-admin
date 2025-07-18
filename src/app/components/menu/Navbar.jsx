@@ -19,7 +19,7 @@ export default function NavbarMenu() {
       <Navbar fluid className="">
         <NavbarBrand href="/">
           <img src="https://studentdesk.uai.ac.id/file/images/uai-icon.png" className="mr-3 h-6 sm:h-9" alt="UAI Icon"/>
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+          <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
             RPS & RTM UAI
           </span>
         </NavbarBrand>

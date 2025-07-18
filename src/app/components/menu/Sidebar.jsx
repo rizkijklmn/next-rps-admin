@@ -8,6 +8,7 @@ import {
   DrawerHeader,
   DrawerItems,
   Sidebar,
+  SidebarCollapse,
   SidebarItem,
   SidebarItemGroup,
   SidebarItems,
@@ -49,11 +50,13 @@ export default function SidebarMenu({ mode = "desktop" }) {
               <SidebarItem href="/cpl" active={currentPath === "/cpl"} icon={HiOutlineCheck}>CPL</SidebarItem>
               <SidebarItem href="/matakuliah" active={currentPath === "/matakuliah"} icon={HiOutlineDocumentText}>Mata Kuliah</SidebarItem>
             </SidebarItemGroup>
+
             <SidebarItemGroup>
               <h5 className="font-semibold tracking-wider dark:text-white">Menu Pengembang RPS</h5>
-              <SidebarItem href="/cpl_pengembangrps" active={currentPath === "/cpl_pengembangrps"} icon={HiOutlineCheck}>CPL</SidebarItem>
-
+              {/* <SidebarItem href="/cpl_pengembangrps" active={currentPath === "/cpl_pengembangrps"} icon={HiOutlineCheck}>Mata Kuliah</SidebarItem> */}
+              <SidebarItem href="/matakuliah_pengembangrps" active={currentPath === "/matakuliah_pengembangrps"} icon={HiOutlineDocumentText}>Daftar Mata Kuliah</SidebarItem>
             </SidebarItemGroup>
+
             <SidebarItemGroup>
               <SidebarItem href="/cpmk" active={currentPath === "/cpmk"} icon={HiOutlineCheck}>CPMK</SidebarItem>
               <SidebarItem href="/sub_cpmk" active={currentPath === "/sub_cpmk"} icon={HiOutlineCheck}>Sub-CPMK</SidebarItem>
@@ -62,11 +65,8 @@ export default function SidebarMenu({ mode = "desktop" }) {
               <SidebarItem href="/rtm" active={currentPath === "/rtm"} icon={HiOutlineClipboardCopy}>RTM</SidebarItem>
             </SidebarItemGroup>
 
-            {/* <SidebarItemGroup>
-              <SidebarItem href="https://github.com/themesberg/flowbite-react/" icon={HiClipboard}>Docs</SidebarItem>
-              <SidebarItem href="https://flowbite-react.com/" icon={HiCollection}>Components</SidebarItem>
-              <SidebarItem href="https://github.com/themesberg/flowbite-react/issues" icon={HiInformationCircle}>Help</SidebarItem>
-            </SidebarItemGroup> */}
+            <SidebarItemGroup>
+            </SidebarItemGroup>
 
           </SidebarItems>
 

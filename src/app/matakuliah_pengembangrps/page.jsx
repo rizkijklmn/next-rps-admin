@@ -1,14 +1,14 @@
 // app/cpmk/page.jsx
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
-import CPLPengembangRPSClientSide from "./client";
+import MKPengembangRPSClientSide from "./client";
 
 export const metadata = {
   title: "CPL Pengembang RPS",
   description: "Welcome to cpl pengembang rps",
 };
 
-export default async function CPLPengembangRPS() {
+export default async function MKPengembangRPS() {
   return (
     <>
       <NavbarMenu />
@@ -22,7 +22,7 @@ export default async function CPLPengembangRPS() {
 
         {/* Main Content */}
         <main className="flex-1 p-4">
-          <CPLPengembangRPSClientSide />
+          <MKPengembangRPSClientSide />
 
         </main>
       </div>

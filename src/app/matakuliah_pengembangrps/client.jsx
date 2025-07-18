@@ -1,4 +1,4 @@
-// app/cpl_pengembangrps/client.jsx
+// app/matakuliah_pengembangrps/client.jsx
 "use client"
 
 import { Button, Card, Checkbox, FooterDivider, HR, Label, TabItem, Tabs } from "flowbite-react"
@@ -7,7 +7,7 @@ import { listCpl } from "../components/Data"
 import { IoPencil } from "react-icons/io5"
 import { ButtonCustom } from "../components/Button"
 
-export default function CPLPengembangRPSClientSide() {
+export default function MKPengembangRPSClientSide() {
     return (
         <div className="mx-10 my-3">
             {/* <div className="font-bold text-3xl pb-5">
@@ -15,7 +15,7 @@ export default function CPLPengembangRPSClientSide() {
                 </div> */}
 
             <p className="text-xl font-bold pb-5 tracking-normal text-gray-900 dark:text-white">
-                Halaman Capaian Pembelajaran Lulusan untuk Pengembang RPS
+                Halaman Detail Mata Kuliah untuk Pengembang RPS
             </p>
 
             <div className="space-y-4">

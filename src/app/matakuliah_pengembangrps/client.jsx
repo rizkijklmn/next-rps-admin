@@ -3,7 +3,7 @@
 
 import { Button, Card, Checkbox, FooterDivider, HR, Label, TabItem, Tabs } from "flowbite-react"
 import { HiCheck, HiClipboardCheck, HiClipboardList, } from "react-icons/hi"
-import { listCpl } from "../components/Data"
+import { listCPL } from "../components/Data"
 import { IoPencil } from "react-icons/io5"
 import { ButtonCustom } from "../components/Button"
 
@@ -24,7 +24,7 @@ export default function MKPengembangRPSClientSide() {
                 </Card>
 
                 <Card>
-                    <Tabs aria-label="CPL tabs" variant="fullWidth">
+                    <Tabs aria-label="RPS Tabs" variant="fullWidth">
                         <TabItem active={{ className: "bg-gray-200" }} title="Capaian Pembelajaran Lulusan" icon={HiCheck} className="cursor-pointer">
                             <p className="text-base font-bold tracking-normal text-gray-900 dark:text-white my-5">
                                 Capaian Pembelajaran Lulusan yang Dibebankan pada Mata Kuliah
@@ -39,7 +39,7 @@ export default function MKPengembangRPSClientSide() {
                                 </thead>
                                 <tbody className="">
                                     {
-                                        listCpl.map((item) => {
+                                        listCPL.map((item) => {
                                             return (
                                                 <tr key={item.id} className="border-y-1 border-gray-200 dark:border-gray-700">
                                                     <td className="flex items-center justify-center px-6 py-6">

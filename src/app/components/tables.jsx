@@ -1,8 +1,45 @@
-import { Button } from "flowbite-react";
+import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 import { IoPencil, IoTrash } from "react-icons/io5";
-import { listCpl, listMatakuliah } from "./Data";
+import { listCPL, listMatakuliah } from "./Data";
+import { useEffect, useRef, useState } from "react";
+import Swal from "sweetalert2";
 
-function TableCpl() {
+function TableCPL() {
+
+    const [dataCPL, setDataCPL] = useState(listCPL);
+
+    const [selectedCPL, setSelectedCPL] = useState(null);
+    const [editKodeCPL, setEditKodeCPL] = useState('');
+    const [editRumusanCPL, setEditRumusanCPL] = useState('');
+
+    const openEditModal = (cpl) => {
+        setSelectedCPL(cpl);
+        setEditKodeCPL(cpl.kodecpl);
+        setEditRumusanCPL(cpl.rumusancpl);
+    };
+
+    const closeEditModal = () => {
+        setSelectedCPL(null);
+    }
+
+    const handleSave = () => {
+        setDataCPL(dataCPL.map(cpl =>
+            cpl.id === selectedCPL.id
+                ? { ...cpl, kodecpl: editKodeCPL, rumusancpl: editRumusanCPL }
+                : cpl
+        ));
+        closeEditModal();
+
+        Swal.fire({
+            title: 'Berhasil!',
+            text: 'Data CPL telah diperbarui.',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+    }
+
     return (
         <div>
             <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
@@ -15,21 +52,49 @@ function TableCpl() {
                 </thead>
                 <tbody className="text-sm">
                     {
-                        listCpl.map((item) => {
-                            return (
-                                <tr className="border border-gray-200 dark:border-gray-600" key={item.id}>
-                                    <td className="px-5 py-3 text-center">{item.kodecpl}</td>
-                                    <td className="px-5 py-3">{item.rumusancpl}</td>
-                                    <td className="flex justify-center gap-1 px-5 py-3">
-                                        <Button className="cursor-pointer" color={"green"} outline><IoPencil size={15} /></Button>
-                                        {/* <Button className="cursor-pointer" color={"red"} outline><IoTrash /></Button> */}
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
+                        dataCPL.map(cpl => (
+                            <tr className="border border-gray-200 dark:border-gray-600" key={cpl.id}>
+                                <td className="px-5 py-3 text-center">{cpl.kodecpl}</td>
+                                <td className="px-5 py-3">{cpl.rumusancpl}</td>
+                                <td className="flex justify-center gap-1 px-5 py-3">
+                                    <Button className="cursor-pointer" outline color={"green"} onClick={() => openEditModal(cpl)}><IoPencil size={15} /></Button>
+                                    {/* <Button className="cursor-pointer" color={"red"} outline><IoTrash /></Button> */}
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
+
+            {/* Modal */}
+            {selectedCPL && (
+                <Modal popup className="p-9" size="2xl" show={openEditModal} onClose={closeEditModal} >
+                    <ModalHeader className="p-6">Ubah Data CPL</ModalHeader>
+                    <ModalBody>
+                        <div className="space-y-6">
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label className="text-base font-bold">Kode CPL</Label>
+                                </div>
+                                <TextInput value={editKodeCPL} disabled />
+                            </div>
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label className="text-base font-bold">Rumusan CPL</Label>
+                                </div>
+                                <Textarea
+                                    rows={4}
+                                    value={editRumusanCPL}
+                                    onChange={(e) => setEditRumusanCPL(e.target.value)}
+                                    required />
+                            </div>
+                        </div>
+                    </ModalBody>
+                    <ModalFooter className="flex gap-2 justify-end">
+                        <Button type="submit" className="cursor-pointer" color={"green"} onClick={handleSave}>Simpan</Button>
+                        <Button type="submit" className="cursor-pointer" outline color={"red"} onClick={closeEditModal}>Batal</Button>
+                    </ModalFooter>
+                </Modal>
+            )}
         </div>
     )
 }
@@ -68,4 +133,4 @@ function TableMatakuliah() {
     )
 }
 
-export { TableCpl, TableMatakuliah };
+export { TableCPL, TableMatakuliah };

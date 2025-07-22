@@ -1,17 +1,15 @@
 // app/cpl/client.jsx
 "use client"
 
-import { Card, Dropdown, DropdownItem } from "flowbite-react"
-import { ButtonCustom } from "../components/Button"
-import { TableCpl } from "../components/Tables"
+import { Button, Card, Dropdown, DropdownItem } from "flowbite-react"
+import { TableCPL } from "../components/Tables"
 import { useState } from "react";
 import { kurikulum } from "../components/Data";
 import { SearchCPL } from "../components/Search";
-import { IoSearch } from "react-icons/io5";
 import { HiOutlinePlusSm } from "react-icons/hi";
 import { TambahCPLModal } from "../components/Modals";
 
-export default function CplClientSide() {
+export default function CPLClientSide() {
     const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
     const [openModal, setOpenModal] = useState(false);
 
@@ -30,26 +28,17 @@ export default function CplClientSide() {
                         <div className="flex items-center gap-5">
 
                             {/* Pilihan Kurikulum */}
-                            <p className="font-bold">Kurikulum</p>
-                            <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="lg">
+                            <p className="font-semibold">Kurikulum</p>
+                            <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="md">
                                 {kurikulum.map((kurikulum, i_kurikulum) => (
                                     <DropdownItem key={i_kurikulum} onClick={() => setStateKurikulum(kurikulum)}>{kurikulum}</DropdownItem>
                                 ))}
                             </Dropdown>
 
-                            {/* Vertical divider */}
-                            {/* <div
-                                className="h-full w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-25 dark:via-neutral-400">
-                            </div> */}
-
                             {/* Tombol tampilkan */}
-                            <ButtonCustom
-                                type={"button"}
-                                className={"inline-flex gap-2 cursor-pointer items-center space-x-1 text-white bg-blue-700 hover:bg-blue-800 px-5 py-[9px] rounded-sm text-sm"}
-                                btnColor={"blue"}
-                                icon={<IoSearch size={15} />}
-                                text={"Tampilkan"}
-                            />
+                            <Button type="submit" className="inline-flex items-center cursor-pointer gap-2" color="blue" onClick={() => { }}>
+                                Tampilkan
+                            </Button>
 
                         </div>
                     </Card>
@@ -62,14 +51,9 @@ export default function CplClientSide() {
                             <SearchCPL />
 
                             {/* Tombol open modal tambah CPL */}
-                            <ButtonCustom
-                                type={"button"}
-                                className={"cursor-pointer flex items-center gap-1"}
-                                btnColor={"blue"}
-                                onClick={() => setOpenModal(true)}
-                                icon={<HiOutlinePlusSm />}
-                                text={"Tambah"}
-                            />
+                            <Button type="submit" className="inline-flex items-center cursor-pointer gap-1" color="green" onClick={() => setOpenModal(true)}>
+                                <HiOutlinePlusSm size={15} />Tambah
+                            </Button>
 
                             {/* Modal/popup form tambal CPL */}
                             <TambahCPLModal
@@ -109,8 +93,8 @@ export default function CplClientSide() {
                         </div>
                     </div>
 
-                    <TableCpl />
-                    
+                    <TableCPL />
+
                 </Card>
             </div>
         </main>

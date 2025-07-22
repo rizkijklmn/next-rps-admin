@@ -8,7 +8,6 @@ import {
   DrawerHeader,
   DrawerItems,
   Sidebar,
-  SidebarCollapse,
   SidebarItem,
   SidebarItemGroup,
   SidebarItems,
@@ -82,7 +81,7 @@ export default function SidebarMenu({ mode = "desktop" }) {
   // Mode mobile: show button and drawer
   return (
     <div className="md:hidden">
-      <Button onClick={() => setIsOpen(true)} className="m-1">
+      <Button size="md" onClick={() => setIsOpen(true)} className="">
         ☰ Menu
       </Button>
       <Drawer open={isOpen} onClose={() => setIsOpen(false)}>

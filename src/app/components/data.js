@@ -2,7 +2,7 @@ const kurikulum = ["2009", "2014", "2019", "2024"];
 const prodi = ["S-1 Gizi", "S-1 Informatika", "S-1 Bioteknologi", "S-1 Teknik Elektro", "S-1 Teknik Industri"];
 const listDosen = ["Dosen 1", "Dosen 2", "Dosen 4", "Dosen 5", "Dosen 6", "Dosen 7", "Dosen 8"];
 
-const listCpl = [
+const listCPL = [
     {
         id: 1,
         kodecpl: "CPL-1",
@@ -26,12 +26,7 @@ const listCpl = [
     {
         id: 5,
         kodecpl: "CPL-5",
-        rumusancpl: `Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
-        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
-        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
-        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
-        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.
-        Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer.`,
+        rumusancpl: "Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer. Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer. Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer. Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer. Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer. Kemampuan merancang, memodelkan, dan membangun aplikasi menggunakan prinsip-prinsip grafika komputer serta interaksi manusia dan komputer."
     }
 ];
 
@@ -56,4 +51,4 @@ const listMatakuliah = [
     // }
 ]
 
-export { kurikulum, prodi, listDosen, listCpl, listMatakuliah };
+export { kurikulum, prodi, listDosen, listCPL, listMatakuliah };

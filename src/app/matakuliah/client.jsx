@@ -1,8 +1,8 @@
 // app/matakuliah/client.jsx
 "use client"
 
-import { Card, Dropdown, DropdownItem } from "flowbite-react"
-import { ButtonCustom } from "../components/Button"
+import { Button, Card, Dropdown, DropdownItem } from "flowbite-react"
+import { ButtonCustom, ButtonTampilkan } from "../components/Button"
 import { TableMatakuliah } from "../components/Tables"
 import { kurikulum, prodi } from "../components/Data"
 import { useState } from "react";
@@ -24,21 +24,19 @@ export default function MatakuliahClientSide() {
                     <Card className="flex items-center w-auto bg-gray-50">
                         <div className="flex items-center gap-5">
 
+                            {/* Pilihan Kurikulum */}
                             <p className="font-bold">Kurikulum</p>
-                            <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="lg">
+                            <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="md">
                                 {kurikulum.map((kurikulum, i_kurikulum) => (
                                     <DropdownItem key={i_kurikulum} onClick={() => setStateKurikulum(kurikulum)}>{kurikulum}</DropdownItem>
                                 ))}
                             </Dropdown>
 
                             {/* Tombol tampilkan */}
-                            <ButtonCustom
-                                type={"button"}
-                                className={"inline-flex gap-2 cursor-pointer items-center space-x-1 text-white bg-blue-700 hover:bg-blue-800 px-5 py-[9px] rounded-sm text-sm"}
-                                btnColor={"blue"}
-                                icon={<IoSearch size={15} />}
-                                text={"Tampilkan"}
-                            />
+                            <Button type="submit" className="inline-flex items-center cursor-pointer gap-2" color="blue" onClick={() => { }}>
+                                Tampilkan
+                            </Button>
+
                         </div>
                     </Card>
                 </form>

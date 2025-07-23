@@ -1,12 +1,25 @@
 import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 import { IoPencil, IoTrash } from "react-icons/io5";
 import { listCPL, listMatakuliah } from "./Data";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { fetchCPLData } from "@/utils/fetchCPL";
 
-function TableCPL() {
+function TableCPL({ prodiId, kurikulumId }) {
 
-    const [dataCPL, setDataCPL] = useState(listCPL);
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const result = await fetchCPLData(prodiId, kurikulumId);
+                setData(result);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        getData();
+    }, [prodiId, kurikulumId]);
 
     const [selectedCPL, setSelectedCPL] = useState(null);
     const [editKodeCPL, setEditKodeCPL] = useState('');
@@ -37,7 +50,6 @@ function TableCPL() {
             showConfirmButton: false,
             timer: 1500
         });
-
     }
 
     return (
@@ -46,16 +58,16 @@ function TableCPL() {
                 <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
                     <tr className="text-base">
                         <th className="px-5 py-3">Kode CPL</th>
-                        <th className="px-5 py-3">Rumusan CPL</th>
+                        <th className="px-5 py-3">Deskripsi CPL</th>
                         <th className="px-5 py-3">Ubah/Hapus</th>
                     </tr>
                 </thead>
                 <tbody className="text-sm">
                     {
-                        dataCPL.map(cpl => (
-                            <tr className="border border-gray-200 dark:border-gray-600" key={cpl.id}>
-                                <td className="px-5 py-3 text-center">{cpl.kodecpl}</td>
-                                <td className="px-5 py-3">{cpl.rumusancpl}</td>
+                        data.map((cpl, index) => (
+                            <tr className="border border-gray-200 dark:border-gray-600" key={index}>
+                                <td className="px-5 py-3 text-center">{cpl.KodeCpl}</td>
+                                <td className="px-5 py-3">{cpl.DeskripsiCpl}</td>
                                 <td className="flex justify-center gap-1 px-5 py-3">
                                     <Button className="cursor-pointer" outline color={"green"} onClick={() => openEditModal(cpl)}><IoPencil size={15} /></Button>
                                     {/* <Button className="cursor-pointer" color={"red"} outline><IoTrash /></Button> */}

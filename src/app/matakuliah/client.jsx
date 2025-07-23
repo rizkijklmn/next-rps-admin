@@ -8,8 +8,11 @@ import { kurikulum, prodi } from "../components/Data"
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5"
 import { SearchMK } from "../components/Search"
+import DropdownKurikulum from "../components/DropdownKurikulum"
 
 export default function MatakuliahClientSide() {
+
+    const [kurikulumId, setKurikulumId] = useState(null);
 
     const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
     // const [stateProdi, setStateProdi] = useState("-- Pilih Program Studi --");
@@ -18,24 +21,20 @@ export default function MatakuliahClientSide() {
         <main>
             <div className="mx-10 my-3">
                 <p className="text-xl font-bold tracking-normal text-gray-900 dark:text-white">
-                    Daftar Mata Kuliah
+                    Halaman Daftar Mata Kuliah
                 </p>
                 <form className="flex my-7 justify-center">
                     <Card className="flex items-center w-auto bg-gray-50">
                         <div className="flex items-center gap-5">
 
                             {/* Pilihan Kurikulum */}
-                            <p className="font-bold">Kurikulum</p>
-                            <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="md">
-                                {kurikulum.map((kurikulum, i_kurikulum) => (
-                                    <DropdownItem key={i_kurikulum} onClick={() => setStateKurikulum(kurikulum)}>{kurikulum}</DropdownItem>
-                                ))}
-                            </Dropdown>
+                            <p className="font-semibold">Kurikulum</p>
+                            <DropdownKurikulum onSelect={setKurikulumId} />
 
                             {/* Tombol tampilkan */}
-                            <Button type="submit" className="inline-flex items-center cursor-pointer gap-2" color="blue" onClick={() => { }}>
+                            {/* <Button type="submit" className="inline-flex items-center cursor-pointer gap-2" color="blue" onClick={() => { }}>
                                 Tampilkan
-                            </Button>
+                            </Button> */}
 
                         </div>
                     </Card>

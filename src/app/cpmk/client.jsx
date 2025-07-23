@@ -11,7 +11,7 @@ export default function CPMKClientSide() {
                 </div> */}
 
             <p className="text-xl font-bold pb-5 tracking-normal text-gray-900 dark:text-white">
-                Daftar Capaian Pembelajaran Mata Kuliah
+                Halaman Daftar Capaian Pembelajaran Mata Kuliah
             </p>
 
             <Card>

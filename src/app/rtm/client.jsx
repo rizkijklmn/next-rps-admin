@@ -12,7 +12,7 @@ export default function RTMClientSide() {
             </div> */}
 
             <p className="text-xl font-bold pb-5 tracking-normal text-gray-900 dark:text-white">
-                Rencana Tugas Mingguan
+                Halaman Rencana Tugas Mingguan
             </p>
 
             <Card>

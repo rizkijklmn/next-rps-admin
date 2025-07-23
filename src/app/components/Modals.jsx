@@ -21,7 +21,6 @@ function TambahCPLModal({ show, onClose, onClick }) {
             setAddRumusanCPL('');
             onClose();
 
-
             Swal.fire({
                 icon: 'success',
                 title: 'Berhasil!',
@@ -35,8 +34,6 @@ function TambahCPLModal({ show, onClose, onClick }) {
                 title: 'Oops!',
                 text: 'Kode dan Rumusan CPL harus diisi.',
             });
-
-
         }
     }
 

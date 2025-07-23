@@ -2,17 +2,37 @@
 "use client"
 
 import { Button, Card, Dropdown, DropdownItem } from "flowbite-react"
-import { TableCPL } from "../components/Tables"
-import { useState } from "react";
-import { kurikulum } from "../components/Data";
-import { SearchCPL } from "../components/Search";
+import { useEffect, useState } from "react";
 import { HiOutlinePlusSm } from "react-icons/hi";
+
+// Components
+import { TableCPL } from "../components/Tables"
+import { SearchCPL } from "../components/Search";
 import { TambahCPLModal } from "../components/Modals";
+import { fetchKurikulum } from "@/utils/fetchKurikulum";
+import DropdownKurikulum from "../components/DropdownKurikulum";
 
 export default function CPLClientSide() {
-    const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
-    const [openModal, setOpenModal] = useState(false);
 
+    // Fetch data kurikulum dari API
+    // const url = 'http://192.168.54.59:3002/dbuai/kurikulum';
+    // const [kurikulum, setKurikulum] = useState([]);
+    // const getDataKurikulum = async () => {
+    //     const response = await fetch(url);
+    //     const dataKurikulum = await response.json();
+    //     setKurikulum(dataKurikulum);
+    // }
+
+    // useEffect(() => {
+    //     fetchKurikulum();
+    // }, []);
+
+    const [kurikulumId, setKurikulumId] = useState(null);
+    const prodiId = 2; // Contoh ID Prodi sudah di set 2
+
+    // Set state dari pilihan kurikulum dan modal
+    // const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
+    const [openModal, setOpenModal] = useState(false);
     function onCloseModal() {
         setOpenModal(false);
     }
@@ -21,7 +41,7 @@ export default function CPLClientSide() {
         <main>
             <div className="mx-10 my-3">
                 <p className="text-xl font-bold tracking-normal text-gray-900 dark:text-white">
-                    Daftar Capaian Pembelajaran Lulusan Program Studi
+                    Halaman Daftar Capaian Pembelajaran Lulusan Program Studi
                 </p>
                 <form className="flex my-7 justify-center">
                     <Card className="flex items-center w-auto bg-gray-50">
@@ -29,16 +49,27 @@ export default function CPLClientSide() {
 
                             {/* Pilihan Kurikulum */}
                             <p className="font-semibold">Kurikulum</p>
-                            <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="md">
-                                {kurikulum.map((kurikulum, i_kurikulum) => (
-                                    <DropdownItem key={i_kurikulum} onClick={() => setStateKurikulum(kurikulum)}>{kurikulum}</DropdownItem>
+                            <DropdownKurikulum onSelect={setKurikulumId} />
+
+                            {/* <Dropdown color={"light"} className="w-100 justify-between" label={stateKurikulum} size="md">
+                                {kurikulum.map((item) => (
+                                    <DropdownItem
+                                        key={item.ID}
+                                        onClick={() => setStateKurikulum(item.TahunKurikulum)}
+                                    >
+                                        {item.TahunKurikulum}
+                                    </DropdownItem>
                                 ))}
-                            </Dropdown>
+                            </Dropdown> */}
+
+                            {/* {kurikulumId && (
+                                <TableCPL prodiId={prodiId} kurikulumId={kurikulumId} />
+                            )} */}
 
                             {/* Tombol tampilkan */}
-                            <Button type="submit" className="inline-flex items-center cursor-pointer gap-2" color="blue" onClick={() => { }}>
+                            {/* <Button type="submit" className="inline-flex items-center cursor-pointer gap-2" color="blue" onClick={() => { }}>
                                 Tampilkan
-                            </Button>
+                            </Button> */}
 
                         </div>
                     </Card>
@@ -51,7 +82,12 @@ export default function CPLClientSide() {
                             <SearchCPL />
 
                             {/* Tombol open modal tambah CPL */}
-                            <Button type="submit" className="inline-flex items-center cursor-pointer gap-1" color="green" onClick={() => setOpenModal(true)}>
+                            <Button
+                                type="submit"
+                                color="green"
+                                className="inline-flex items-center cursor-pointer gap-1"
+                                onClick={() => setOpenModal(true)}
+                            >
                                 <HiOutlinePlusSm size={15} />Tambah
                             </Button>
 
@@ -93,8 +129,13 @@ export default function CPLClientSide() {
                         </div>
                     </div>
 
-                    <TableCPL />
-
+                    <div>
+                        {
+                            kurikulumId && (
+                                <TableCPL prodiId={prodiId} kurikulumId={kurikulumId} />
+                            )
+                        }
+                    </div>
                 </Card>
             </div>
         </main>

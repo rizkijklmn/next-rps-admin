@@ -1,5 +1,26 @@
 // utils/fetchCPL.js
 
+// KODE DENGAN URLSearchParams
+export const fetchCPLData = async (prodiId, kurikulumId) => {
+    const params = new URLSearchParams({
+        ProdiId: prodiId,
+        KurikulumId: kurikulumId,
+    });
+
+    const response = await fetch(`http://192.168.54.59:3001/api_obe/cpl/prodi/kurikulum?${params.toString()}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error('Gagal mengambil data CPL');
+    }
+
+    return await response.json();
+};
+
 // KODE ASLI dengan Method POST dan request BODY
 // export const fetchCPLData = async (prodiId, kurikulumId) => {
 //     const response = await fetch('http://192.168.54.59:3001/api_obe/cpl/prodi/kurikulum', {
@@ -39,24 +60,3 @@
 
 //     return await response.json();
 // };
-
-// KODE DENGAN URLSearchParams
-export const fetchCPLData = async (prodiId, kurikulumId) => {
-    const params = new URLSearchParams({
-        ProdiId: prodiId,
-        KurikulumId: kurikulumId,
-    });
-
-    const response = await fetch(`http://192.168.54.59:3001/api_obe/cpl/prodi/kurikulum?${params.toString()}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error('Gagal mengambil data CPL');
-    }
-
-    return await response.json();
-};

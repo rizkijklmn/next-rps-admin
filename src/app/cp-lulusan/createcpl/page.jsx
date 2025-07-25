@@ -17,7 +17,7 @@ export default async function CreateCpl() {
         <div className="flex flex-col flex-1 md:ml-64">
 
           {/* Navbar - fixed di atas */}
-          <header className="fixed top-0 left-0 right-0 h-15 ">
+          <header className="fixed top-0 left-0 right-0 h-16 ">
             {/* Navbar content */}
             <div className="w-full">
               <NavbarMenu />
@@ -30,7 +30,7 @@ export default async function CreateCpl() {
           </aside>
 
           {/* Konten scrollable */}
-          <main className="mt-16 p-4 overflow-y-auto h-[calc(100vh-4rem)]">
+          <main className="mt-0 p-4 overflow-y-auto h-[calc(100vh-4rem)]">
             {/* Konten panjang di sini */}
             <CreateCplClientSide />
           </main>

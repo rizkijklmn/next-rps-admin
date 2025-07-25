@@ -30,14 +30,13 @@ export default function SidebarMenu({ mode = "desktop" }) {
     <Sidebar aria-label="Sidebar Menu" className="w-full">
       <div className="flex h-full w-full flex-col justify-between">
         <div>
-
           {/* {mode === "mobile" && (
             <form className="pb-3">
               <TextInput icon={HiSearch} type="search" placeholder="Search" required size={32} />
             </form>
           )} */}
 
-          <SidebarItems>
+          <SidebarItems className="bg-white">
 
             <SidebarItemGroup>
               <SidebarItem href="/" icon={HiOutlineHome} active={currentPath === "/"}>Dashboard</SidebarItem>
@@ -65,11 +64,7 @@ export default function SidebarMenu({ mode = "desktop" }) {
               <SidebarItem href="/rt-mahasiswa" active={currentPath === "/rt-mahasiswa"} icon={HiOutlineClipboardCopy}>RTM</SidebarItem>
             </SidebarItemGroup>
 
-            <SidebarItemGroup>
-            </SidebarItemGroup>
-
           </SidebarItems>
-
         </div>
       </div>
     </Sidebar >

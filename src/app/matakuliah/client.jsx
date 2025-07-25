@@ -3,7 +3,7 @@
 
 import { Button, Card, Dropdown, DropdownItem } from "flowbite-react"
 import { ButtonCustom, ButtonTampilkan } from "../components/Button"
-import { TableMatakuliah } from "../components/Tables"
+import { TablesMatakuliah } from "../components/Tables"
 import { kurikulum, prodi } from "../components/Data"
 import { useState } from "react";
 import { IoSearch } from "react-icons/io5"
@@ -48,7 +48,7 @@ export default function MatakuliahClientSide() {
                     </div>
 
                     {/* Table list matakuliah */}
-                    <TableMatakuliah />
+                    <TablesMatakuliah />
                 </Card>
             </div>
         </main>

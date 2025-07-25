@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 import { fetchKurikulum } from '@/utils/fetchKurikulum';
 
 const DropdownKurikulum = ({ onSelect }) => {
-    const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
+    const [stateKurikulum, setStateKurikulum] = useState("Pilih Kurikulum");
+
     const [kurikulumList, setKurikulumList] = useState([]);
 
     useEffect(() => {
@@ -28,6 +29,7 @@ const DropdownKurikulum = ({ onSelect }) => {
 
     return (
         <>
+            {/* KODE DENGAN Dropdown */}
             <Dropdown
                 size="md"
                 color={"light"}
@@ -39,7 +41,7 @@ const DropdownKurikulum = ({ onSelect }) => {
                     kurikulumList.map((kurikulum) => (
                         <DropdownItem
                             key={kurikulum.ID}
-                            onClick={() => {onSelect(kurikulum.ID), setStateKurikulum(`Tahun ${kurikulum.TahunKurikulum}`)}}
+                            onClick={() => { onSelect(kurikulum.ID), setStateKurikulum(`Tahun ${kurikulum.TahunKurikulum}`) }}
                         >
                             Tahun {kurikulum.TahunKurikulum}
                         </DropdownItem>
@@ -47,6 +49,7 @@ const DropdownKurikulum = ({ onSelect }) => {
                 }
             </Dropdown>
 
+            {/* KODE DENGAN Select */}
             {/* <Select onChange={handleChange} defaultValue="">
                 <option value="" disabled>Pilih Kurikulum</option>
                 {kurikulumList.map((kurikulum) => (

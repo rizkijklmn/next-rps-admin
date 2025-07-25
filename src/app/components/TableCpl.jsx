@@ -1,12 +1,10 @@
 import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
-import { IoPencil, IoTrash } from "react-icons/io5";
-import { listCPL, listMatakuliah } from "./Data";
+import { IoPencil } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { fetchCPLData } from "@/utils/fetchCPL";
 
-function TablesCPL({ prodiId, kurikulumId }) {
-
+export default function TableCpl({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -57,9 +55,9 @@ function TablesCPL({ prodiId, kurikulumId }) {
             <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
                 <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
                     <tr className="text-base">
-                        <th className="px-5 py-3">Kode CPL</th>
-                        <th className="px-5 py-3">Deskripsi CPL</th>
-                        <th className="px-5 py-3">Ubah/Hapus</th>
+                        <th className="px-5 py-3 w-15">Kode CPL</th>
+                        <th className="px-5 py-3 w-[500px]">Deskripsi CPL</th>
+                        <th className="px-5 py-3 w-40">Ubah/Hapus</th>
                     </tr>
                 </thead>
                 <tbody className="text-sm">
@@ -110,39 +108,3 @@ function TablesCPL({ prodiId, kurikulumId }) {
         </div>
     )
 }
-
-function TablesMatakuliah() {
-    return (
-        <div>
-            <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
-                <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
-                    <tr>
-                        <th className="px-6 py-5">Kode Mata Kuliah</th>
-                        <th className="px-6 py-5">Nama Mata Kuliah</th>
-                        <th className="px-6 py-5">sks</th>
-                        <th className="px-6 py-5">Pengembang RPS</th>
-                        <th className="px-6 py-5">Dosen RMK</th>
-                        <th className="px-6 py-5">Kaprodi</th>
-                        <th className="px-6 py-5">Pengampu MK</th>
-
-                    </tr>
-                </thead>
-                <tbody className="">
-                    {
-                        listMatakuliah.map((item) => {
-                            return (
-                                <tr className="border border-gray-200 dark:border-gray-600" key={item.id}>
-                                    <td className="flex px-6 py-5 items-center justify-center">{item.kode_matakuliah}</td>
-                                    <td className="px-6 py-5 font-bold"><a href="/cpl" className="font-sans text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:underline" target="_self">{item.nama_matakuliah}</a></td>
-                                    <td className="px-6 py-5 text-center">{item.sks}</td>
-                                </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
-        </div>
-    )
-}
-
-export { TablesCPL, TablesMatakuliah };

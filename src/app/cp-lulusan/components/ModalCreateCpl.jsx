@@ -1,11 +1,12 @@
 'use client';
 
-import { Modal, Button, TextInput, Textarea, ModalHeader, ModalBody } from 'flowbite-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiPlus, HiPlusCircle } from 'react-icons/hi';
+import { Modal, Button, TextInput, Textarea, ModalHeader, ModalBody } from 'flowbite-react';
+import Swal from 'sweetalert2';
 
-const CplCreateModal = ({ kurikulumId, prodiId }) => {
+const ModalCreateCpl = ({ kurikulumId, prodiId }) => {
     const [openModal, setOpenModal] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
@@ -82,4 +83,4 @@ const CplCreateModal = ({ kurikulumId, prodiId }) => {
     );
 };
 
-export default CplCreateModal;
+export default ModalCreateCpl;

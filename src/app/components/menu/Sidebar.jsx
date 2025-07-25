@@ -46,23 +46,23 @@ export default function SidebarMenu({ mode = "desktop" }) {
             <SidebarItemGroup>
               {/* <h6 className="font-extrabold uppercase tracking-wider dark:text-white">Kurikulum</h6> */}
               <h5 className="font-semibold tracking-wider dark:text-white">Menu Kaprodi</h5>
-              <SidebarItem href="/pl" active={currentPath === "/pl"} icon={HiOutlineClipboardCopy}>Profil Lulusan</SidebarItem>
-              <SidebarItem href="/cpl" active={currentPath === "/cpl"} icon={HiOutlineCheck}>CPL</SidebarItem>
-              <SidebarItem href="/matakuliah" active={currentPath === "/matakuliah"} icon={HiOutlineDocumentText}>Mata Kuliah</SidebarItem>
+              <SidebarItem href="/profil-lulusan" active={currentPath === "/profil-lulusan"} icon={HiOutlineClipboardCopy}>Profil Lulusan</SidebarItem>
+              <SidebarItem href="/cp-lulusan" active={currentPath === "/cp-lulusan"} icon={HiOutlineCheck}>CPL</SidebarItem>
+              <SidebarItem href="/matkul" active={currentPath === "/matkul"} icon={HiOutlineDocumentText}>Mata Kuliah</SidebarItem>
             </SidebarItemGroup>
 
             <SidebarItemGroup>
               <h5 className="font-semibold tracking-wider dark:text-white">Menu Pengembang RPS</h5>
               {/* <SidebarItem href="/cpl_pengembangrps" active={currentPath === "/cpl_pengembangrps"} icon={HiOutlineCheck}>Mata Kuliah</SidebarItem> */}
-              <SidebarItem href="/matakuliah_pengembangrps" active={currentPath === "/matakuliah_pengembangrps"} icon={HiOutlineDocumentText}>Daftar Mata Kuliah</SidebarItem>
+              <SidebarItem href="/matkul-pengembangrps" active={currentPath === "/matkul-pengembangrps"} icon={HiOutlineDocumentText}>Daftar Mata Kuliah</SidebarItem>
             </SidebarItemGroup>
 
             <SidebarItemGroup>
-              <SidebarItem href="/cpmk" active={currentPath === "/cpmk"} icon={HiOutlineCheck}>CPMK</SidebarItem>
-              <SidebarItem href="/sub_cpmk" active={currentPath === "/sub_cpmk"} icon={HiOutlineCheck}>Sub-CPMK</SidebarItem>
-              <SidebarItem href="/rpsemester" active={(currentPath === "/rpsemester")} icon={HiOutlineClipboardList}>RP Semester</SidebarItem>
-              <SidebarItem href="/rpmingguan" active={currentPath === "/rpmingguan"} icon={HiOutlineClipboardList}>RP Mingguan</SidebarItem>
-              <SidebarItem href="/rtm" active={currentPath === "/rtm"} icon={HiOutlineClipboardCopy}>RTM</SidebarItem>
+              <SidebarItem href="/cp-matkul" active={currentPath === "/cp-matkul"} icon={HiOutlineCheck}>CPMK</SidebarItem>
+              <SidebarItem href="/sub-cp-matkul" active={currentPath === "/sub-cp-matkul"} icon={HiOutlineCheck}>Sub-CPMK</SidebarItem>
+              <SidebarItem href="/rp-semester" active={(currentPath === "/rp-semester")} icon={HiOutlineClipboardList}>RP Semester</SidebarItem>
+              <SidebarItem href="/rp-mingguan" active={currentPath === "/rp-mingguan"} icon={HiOutlineClipboardList}>RP Mingguan</SidebarItem>
+              <SidebarItem href="/rt-mahasiswa" active={currentPath === "/rt-mahasiswa"} icon={HiOutlineClipboardCopy}>RTM</SidebarItem>
             </SidebarItemGroup>
 
             <SidebarItemGroup>

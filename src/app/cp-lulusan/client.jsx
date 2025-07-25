@@ -11,8 +11,8 @@ import { TambahCPLModal } from "../components/Modals";
 import { fetchKurikulum } from "@/utils/fetchKurikulum";
 import DropdownKurikulum from "../components/DropdownKurikulum";
 import { useRouter } from "next/navigation";
-import CplCreateModal from "../components/CplCreateModal";
-import TableCpl from "../components/TableCPL";
+import ModalCreateCpl from "./components/ModalCreateCpl";
+import TableCpl from "./components/TableCpl";
 
 export default function CPLClientSide() {
 
@@ -85,7 +85,7 @@ export default function CPLClientSide() {
                     {kurikulumId ? (
                         <>
                             <div className="flex justify-end">
-                                <CplCreateModal
+                                <ModalCreateCpl
                                     prodiId={prodiId}
                                     kurikulumId={kurikulumId}
                                 />

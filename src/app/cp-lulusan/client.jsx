@@ -1,18 +1,14 @@
 // app/cpl/client.jsx
 "use client"
 
-import { Alert, Button, Card, Dropdown, DropdownItem, Label } from "flowbite-react"
-import { useEffect, useState } from "react";
-import { HiInformationCircle, HiOutlinePlusSm } from "react-icons/hi";
+import { useState } from "react";
+import { Alert, Button, Card } from "flowbite-react"
 
-// Components
-import { SearchCPL } from "../components/Search";
-import { TambahCPLModal } from "../components/Modals";
-import { fetchKurikulum } from "@/utils/fetchKurikulum";
+import { HiInformationCircle } from "react-icons/hi";
+
+// COMPONENT
+import { ModalCreateCpl, TableCpl } from "./components/";
 import DropdownKurikulum from "../components/DropdownKurikulum";
-import { useRouter } from "next/navigation";
-import ModalCreateCpl from "./components/ModalCreateCpl";
-import TableCpl from "./components/TableCpl";
 
 export default function CPLClientSide() {
 
@@ -28,17 +24,16 @@ export default function CPLClientSide() {
     // useEffect(() => {
     //     fetchKurikulum();
     // }, []);
-
     const [kurikulumId, setKurikulumId] = useState(null);
     const prodiId = 2; // Contoh ID Prodi sudah di set 2
-    const router = useRouter();
+    // const router = useRouter();
 
     // Set state dari pilihan kurikulum dan modal
     // const [stateKurikulum, setStateKurikulum] = useState("-- Pilih Kurikulum --");
-    const [openModal, setOpenModal] = useState(false);
-    function onCloseModal() {
-        setOpenModal(false);
-    }
+    // const [openModal, setOpenModal] = useState(false);
+    // function onCloseModal() {
+    //     setOpenModal(false);
+    // }
 
     // const handleCreateCplClick = () => {
     //     router.push('/cpl/createcpl');

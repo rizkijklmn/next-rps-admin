@@ -7,7 +7,6 @@ import { fetchKurikulum } from '@/utils/fetchKurikulum';
 
 const DropdownKurikulum = ({ onSelect }) => {
     const [stateKurikulum, setStateKurikulum] = useState("Pilih Kurikulum");
-
     const [kurikulumList, setKurikulumList] = useState([]);
 
     useEffect(() => {

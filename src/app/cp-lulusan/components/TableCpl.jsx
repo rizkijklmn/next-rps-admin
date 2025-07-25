@@ -1,8 +1,8 @@
-import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
+import Swal from "sweetalert2";
 import { IoPencil } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import Swal from "sweetalert2";
-import { fetchCPLData } from "@/utils/fetchCPL";
+import { fetchCplData } from "@/utils/fetchCPL";
+import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 
 export default function TableCpl({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
@@ -10,7 +10,7 @@ export default function TableCpl({ prodiId, kurikulumId }) {
     useEffect(() => {
         const getData = async () => {
             try {
-                const result = await fetchCPLData(prodiId, kurikulumId);
+                const result = await fetchCplData(prodiId, kurikulumId);
                 setData(result);
             } catch (error) {
                 console.error(error);

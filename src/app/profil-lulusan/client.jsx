@@ -21,11 +21,9 @@ export default function PLClientSide() {
             <div className="flex my-7 justify-center">
                 <Card className="flex items-center w-auto bg-gray-50">
                     <div className="flex items-center gap-5">
-
                         {/* Pilihan Kurikulum */}
                         <p className="font-semibold">Kurikulum</p>
                         <DropdownKurikulum onSelect={setKurikulumId} />
-
                     </div>
                 </Card>
             </div>
@@ -40,8 +38,6 @@ export default function PLClientSide() {
                         Silakan pilih kurikulum terlebih dahulu
                     </Alert>
                 )}
-
-                
             </Card>
         </div>
     )

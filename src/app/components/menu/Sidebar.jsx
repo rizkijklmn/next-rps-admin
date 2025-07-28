@@ -20,6 +20,7 @@ import {
   HiOutlineHome,
 } from "react-icons/hi";
 import { usePathname } from "next/navigation";
+import { GiGraduateCap } from "react-icons/gi";
 
 export default function SidebarMenu({ mode = "desktop" }) {
 
@@ -45,7 +46,7 @@ export default function SidebarMenu({ mode = "desktop" }) {
             <SidebarItemGroup>
               {/* <h6 className="font-extrabold uppercase tracking-wider dark:text-white">Kurikulum</h6> */}
               <h5 className="font-semibold tracking-wider dark:text-white">Menu Kaprodi</h5>
-              <SidebarItem href="/profil-lulusan" active={currentPath === "/profil-lulusan"} icon={HiOutlineClipboardCopy}>Profil Lulusan</SidebarItem>
+              <SidebarItem href="/profil-lulusan" active={currentPath === "/profil-lulusan"} icon={GiGraduateCap}>Profil Lulusan</SidebarItem>
               <SidebarItem href="/cp-lulusan" active={currentPath === "/cp-lulusan"} icon={HiOutlineCheck}>CPL</SidebarItem>
               <SidebarItem href="/matkul" active={currentPath === "/matkul"} icon={HiOutlineDocumentText}>Mata Kuliah</SidebarItem>
             </SidebarItemGroup>

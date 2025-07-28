@@ -4,7 +4,7 @@ import SidebarMenu from "../components/menu/Sidebar";
 import MatakuliahClientSide from "./client";
 
 export const metadata = {
-  title: "Matakuliah",
+  title: "Mata Kuliah",
   description: "Welcome to matakuliah",
 };
 

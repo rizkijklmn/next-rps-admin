@@ -4,7 +4,7 @@ import SidebarMenu from "../components/menu/Sidebar";
 import CPLClientSide from "./client";
 
 export const metadata = {
-  title: "CPL",
+  title: "Capaian Pembelajaran Lulusan",
   description: "Welcome to cpl",
 };
 

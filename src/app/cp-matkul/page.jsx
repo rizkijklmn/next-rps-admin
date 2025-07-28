@@ -4,7 +4,7 @@ import SidebarMenu from "../components/menu/Sidebar";
 import CPMKClientSide from "./client";
 
 export const metadata = {
-  title: "CPMK",
+  title: "Capaian Pembelajaran MK",
   description: "Welcome to cpmk",
 };
 

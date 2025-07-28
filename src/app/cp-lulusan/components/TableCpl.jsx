@@ -67,24 +67,23 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                     </tr>
                 </thead>
                 <tbody className="text-sm">
-                    {
-                        data.map((cpl, index) => (
-                            <tr className="border border-gray-200 dark:border-gray-600" key={index}>
-                                <td className="px-5 py-3 text-center">{cpl.KodeCpl}</td>
-                                <td className="px-5 py-3">{cpl.DeskripsiCpl}</td>
-                                <td className="flex justify-center gap-1 px-5 py-3">
-                                    {/* BUTTON EDIT */}
-                                    <Button className="cursor-pointer" outline color={"green"} /* onClick={() => openEditModal(cpl)} */>
-                                        <IoPencil size={15} />
-                                    </Button>
+                    {data.map((cpl, index) => (
+                        <tr className="border border-gray-200 dark:border-gray-600" key={index}>
+                            <td className="px-5 py-3 text-center">{cpl.KodeCpl}</td>
+                            <td className="px-5 py-3">{cpl.DeskripsiCpl}</td>
+                            <td className="flex justify-center gap-1 px-5 py-3">
+                                {/* BUTTON EDIT */}
+                                <Button className="cursor-pointer" outline color={"green"} /* onClick={() => openEditModal(cpl)} */>
+                                    <IoPencil size={15} />
+                                </Button>
 
-                                    {/* BUTTON HAPUS */}
-                                    <Button className="cursor-pointer" outline color={"red"}>
+                                {/* BUTTON HAPUS */}
+                                {/* <Button className="cursor-pointer" outline color={"red"}>
                                         <IoTrash />
-                                    </Button>
-                                </td>
-                            </tr>
-                        ))}
+                                    </Button> */}
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
 

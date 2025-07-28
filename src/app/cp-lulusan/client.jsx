@@ -79,12 +79,12 @@ export default function CPLClientSide() {
                 <Card>
                     {kurikulumId ? (
                         <>
-                            <div className="flex justify-end">
+                            {/* <div className="flex justify-end">
                                 <ModalCreateCpl
                                     prodiId={prodiId}
                                     kurikulumId={kurikulumId}
                                 />
-                            </div>
+                            </div> */}
                             <TableCpl prodiId={prodiId} kurikulumId={kurikulumId} />
                         </>
                     ) : (

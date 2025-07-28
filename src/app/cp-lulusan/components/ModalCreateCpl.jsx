@@ -6,7 +6,7 @@ import { HiPlus } from 'react-icons/hi';
 import { Modal, Button, TextInput, Textarea, ModalHeader, ModalBody, ModalFooter, Label, Checkbox } from 'flowbite-react';
 import Swal from 'sweetalert2';
 
-const ModalCreateCpl = ({ kurikulumId, prodiId }) => {
+const ModalCreateCpl = ({ kurikulumId, prodiId, onSuccess }) => {
     const [openModal, setOpenModal] = useState(false);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
@@ -20,7 +20,7 @@ const ModalCreateCpl = ({ kurikulumId, prodiId }) => {
 
         try {
             const response = await fetch('http://192.168.54.59:3001/api_obe/cpl', { // KODE ASLI
-            // const response = await fetch('/api/post-cpl', { // KODE DENGAN PROXY
+                // const response = await fetch('/api/post-cpl', { // KODE DENGAN PROXY
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,6 +37,8 @@ const ModalCreateCpl = ({ kurikulumId, prodiId }) => {
                 timer: 1500,
                 showConfirmButton: false
             })
+        
+            if (onSuccess) onSuccess(); // Refetch data di tabel
             setOpenModal(false);
             reset();
         } catch (error) {
@@ -55,6 +57,7 @@ const ModalCreateCpl = ({ kurikulumId, prodiId }) => {
                 <HiPlus className="mr-1" />
                 Tambah
             </Button>
+            
             <Modal dismissible show={openModal} onClose={() => { setOpenModal(false), reset() }}>
 
                 <form onSubmit={handleSubmit(onSubmit)}>

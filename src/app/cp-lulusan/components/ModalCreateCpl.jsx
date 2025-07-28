@@ -19,7 +19,8 @@ const ModalCreateCpl = ({ kurikulumId, prodiId }) => {
         };
 
         try {
-            const response = await fetch('/api/post-cpl', {
+            const response = await fetch('http://192.168.54.59:3001/api_obe/cpl', { // KODE ASLI
+            // const response = await fetch('/api/post-cpl', { // KODE DENGAN PROXY
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

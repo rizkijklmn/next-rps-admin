@@ -36,7 +36,7 @@ export default function SidebarMenu({ mode = "desktop" }) {
             </form>
           )} */}
 
-          <SidebarItems className="bg-white">
+          <SidebarItems>
 
             <SidebarItemGroup>
               <SidebarItem href="/" icon={HiOutlineHome} active={currentPath === "/"}>Dashboard</SidebarItem>
@@ -77,7 +77,7 @@ export default function SidebarMenu({ mode = "desktop" }) {
   // Mode mobile: show button and drawer
   return (
     <div className="md:hidden">
-      <Button size="md" onClick={() => setIsOpen(true)} className="">
+      <Button size="md" onClick={() => setIsOpen(true)}>
         ☰ Menu
       </Button>
       <Drawer open={isOpen} onClose={() => setIsOpen(false)}>

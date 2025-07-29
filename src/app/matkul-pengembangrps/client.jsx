@@ -37,24 +37,23 @@ export default function MKPengembangRPSClientSide() {
                                         <th className="px-6 py-3">Rumusan Capaian Pembelajaran Lulusan</th>
                                     </tr>
                                 </thead>
-                                <tbody className="">
-                                    {
-                                        listCPL.map((item) => {
-                                            return (
-                                                <tr key={item.id} className="border-y-1 border-gray-200 dark:border-gray-700">
-                                                    <td className="flex items-center justify-center px-6 py-6">
-                                                        <Checkbox key={item.id} id={item.id} label={item.kodecpl} />
-                                                    </td>
-                                                    <td className="text-center">
-                                                        <Label htmlFor={item.id}>{item.kodecpl}</Label>
-                                                    </td>
-                                                    <td className="items-center justify-center px-6 py-3"  >
-                                                        <Label htmlFor={item.id}>{item.rumusancpl}</Label>
-                                                    </td>
+                                <tbody>
+                                    {listCPL.map((item) => {
+                                        return (
+                                            <tr key={item.id} className="border-y-1 border-gray-200 dark:border-gray-700">
+                                                <td className="flex items-center justify-center px-6 py-6">
+                                                    <Checkbox key={item.id} id={item.id} label={item.kodecpl} />
+                                                </td>
+                                                <td className="text-center">
+                                                    <Label htmlFor={item.id}>{item.kodecpl}</Label>
+                                                </td>
+                                                <td className="items-center justify-center px-6 py-3"  >
+                                                    <Label htmlFor={item.id}>{item.rumusancpl}</Label>
+                                                </td>
 
-                                                </tr>
-                                            )
-                                        })
+                                            </tr>
+                                        )
+                                    })
                                     }
                                 </tbody>
                             </table>

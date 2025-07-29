@@ -1,4 +1,4 @@
-// utils/fetchCpl.js
+// src/utils/fetchCpl.js
 
 const getCplData = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({

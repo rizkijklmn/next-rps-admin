@@ -1,10 +1,11 @@
 import Swal from "sweetalert2";
 import { IoPencil, IoTrash } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
+import { Alert, Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 import ModalCreateCpl from "./ModalCreateCpl";
 import Link from "next/link";
 import { getCplData } from "@/utils/fetchCpl";
+import { HiInformationCircle } from "react-icons/hi";
 
 export default function TableCpl({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
@@ -59,40 +60,54 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                 <ModalCreateCpl kurikulumId={kurikulumId} prodiId={prodiId} onSuccess={getData} />  {/* ini akan refetch data setelah submit */}
             </div>
 
-            <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
-                <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
-                    <tr className="text-base">
-                        <th className="px-5 py-3">Kode CPL</th>
-                        <th className="px-5 py-3">Deskripsi CPL</th>
-                        <th className="px-5 py-3">Detail</th>
-                        <th className="px-5 py-3">Ubah/Hapus</th>
-                    </tr>
-                </thead>
-                <tbody className="text-sm">
-                    {data.map((cpl, index) => (
-                        <tr className="border border-gray-200 dark:border-gray-600" key={index}>
-                            <td className="px-5 py-3 text-center">{cpl.KodeCpl}</td>
-                            <td className="px-5 py-3">{cpl.DeskripsiCpl}</td>
-                            <td className="px-5 py-3 text-center">
-                                <Link href={`/cp-lulusan/${cpl.ID}`} target="_blank" className="text-blue-500 underline text-sm" >
-                                    Lihat detail
-                                </Link>
-                            </td>
-                            <td className="flex justify-center gap-1 px-5 py-3">
-                                {/* BUTTON EDIT */}
-                                <Button className="cursor-pointer" outline color={"green"} /* onClick={() => openEditModal(cpl)} */>
-                                    <IoPencil size={15} />
-                                </Button>
+            {data.length > 0 ? (
+                <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
+                    <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
+                        <tr className="text-base">
+                            <th className="px-5 py-3">Kode</th>
+                            <th className="px-5 py-3">Deskripsi</th>
+                            <th className="px-5 py-3">Detail</th>
+                            <th className="px-5 py-3">Ubah/Hapus</th>
+                        </tr>
+                    </thead>
+                    <tbody className="text-sm">
+                        {data.map((cpl, index) => (
+                            <tr className="border border-gray-200 dark:border-gray-600" key={index}>
+                                <td className="px-5 py-3 text-center">{cpl.KodeCpl}</td>
+                                <td className="px-5 py-3">{cpl.DeskripsiCpl}</td>
+                                <td className="px-5 py-3 text-center">
+                                    {/* <Link href={`/cp-lulusan/${cpl.ID}`} target="_blank" className="text-blue-500 underline text-sm" >
+                                        Lihat detail
+                                    </Link> */}
 
-                                {/* BUTTON HAPUS */}
-                                {/* <Button className="cursor-pointer" outline color={"red"}>
+                                    <span
+                                        onClick={() => window.open(`/cp-lulusan/${cpl.ID}`, '_blank', 'noopener,noreferrer')}
+                                        className="cursor-pointer text-blue-700 hover:text-blue-500 underline"
+                                    >
+                                        Lihat detail
+                                    </span>
+
+                                </td>
+                                <td className="flex justify-center gap-1 px-5 py-3">
+                                    {/* BUTTON EDIT */}
+                                    <Button className="cursor-pointer" outline color={"green"} /* onClick={() => openEditModal(cpl)} */>
+                                        <IoPencil size={15} />
+                                    </Button>
+
+                                    {/* BUTTON HAPUS */}
+                                    {/* <Button className="cursor-pointer" outline color={"red"}>
                                         <IoTrash />
                                     </Button> */}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
+                    Tidak ada data CPL tersedia.
+                </Alert>
+            )}
 
             {/* Modal */}
             {/* {selectedCPL && (

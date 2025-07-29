@@ -43,7 +43,7 @@ export default function CPLClientSide() {
         <main>
             <div className="mx-10 my-3">
                 <p className="text-xl font-bold tracking-normal text-gray-900 dark:text-white">
-                    Halaman Daftar Capaian Pembelajaran Lulusan Program Studi
+                    Halaman Daftar Capaian Pembelajaran Lulusan &#40;CPL&#41; Program Studi
                 </p>
                 <div className="flex my-7 justify-center">
                     <Card className="flex items-center w-auto bg-gray-50">
@@ -88,7 +88,7 @@ export default function CPLClientSide() {
                             <TableCpl prodiId={prodiId} kurikulumId={kurikulumId} />
                         </>
                     ) : (
-                        <Alert withBorderAccent className="items-center tracking-wide italic" color="teal" icon={HiInformationCircle}>
+                        <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
                             Silakan pilih kurikulum terlebih dahulu
                         </Alert>
                     )}

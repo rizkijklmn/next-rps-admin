@@ -1,10 +1,12 @@
 'use client';
 
+import Swal from 'sweetalert2';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getCplById } from '@/utils/fetchCpl';
 import { getPlData } from '@/utils/fetchPl';
-import { Checkbox, Button, Card } from 'flowbite-react';
+import { getCplById } from '@/utils/fetchCpl';
+import { HiInformationCircle } from 'react-icons/hi';
+import { Checkbox, Button, Card, Label, Alert, Spinner } from 'flowbite-react';
 
 export default function DetailCplPage() {
     const { id } = useParams();
@@ -18,8 +20,13 @@ export default function DetailCplPage() {
                 const cplDetail = await getCplById(id);
                 setCpl(cplDetail);
 
-                const { ProdiId, KurikulumId } = cplDetail
+                // Ambil ID PL yang sudah berelasi dengan CPL
+                if (cplDetail.Pl && cplDetail.Pl.length > 0) {
+                    const relatedPlIds = cplDetail.Pl.map((pl) => pl.ID);
+                    setSelectedPLs(relatedPlIds);
+                }
 
+                const { ProdiId, KurikulumId } = cplDetail;
                 if (ProdiId && KurikulumId) {
                     const plData = await getPlData(ProdiId, KurikulumId);
                     setPlList(plData);
@@ -40,45 +47,214 @@ export default function DetailCplPage() {
 
     const handleSave = async () => {
         // Kirim relasi CPL ↔ PL ke backend
+        try {
+            for (const plId of selectedPLs) {
+                const response = await fetch('http://192.168.54.59:3001/api_obe/pl/cpl', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        PlId: plId,
+                        CplId: parseInt(id), // pastikan id CPL berupa angka
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Gagal menyimpan relasi untuk PL ID ${plId}`);
+                }
+            }
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: 'Semua relasi berhasil disimpan!',
+                showConfirmButton: true
+            }).then(() => {
+                window.close(); // baru tutup tab setelah alert ditutup
+            });
+
+            // alert('Semua relasi berhasil disimpan!');
+            // window.close();
+        } catch (error) {
+            console.error('Error saat menyimpan relasi:', error);
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops!',
+                text: 'Terjadi kesalahan saat menambahkan menyimpan relasi!',
+            })
+        }
+
         console.log("Simpan relasi:", { cplId: id, plIds: selectedPLs });
     };
 
+    // const [data, setData] = useState(null);
+
+    // useEffect(() => {
+    //     fetch(`http://192.168.54.59:3001/api_obe/cpl/${id}`)
+    //         .then((res) => res.json())
+    //         .then((json) => setData(json))
+    //         .catch((err) => console.error('Gagal fetch data CPL:', err));
+    // }, []);
+
+    // if (!data) return <div className="p-4">Memuat data...</div>;
+    if (!cpl) {
+        return (
+
+            <div className="fixed inset-0 flex flex-col justify-center items-center bg-opacity-30 z-50">
+                <Spinner size="xl" aria-label="Memuat data..." />
+                <p className="mt-4 text-lg font-medium">Memuat data...</p>
+            </div>
+
+        );
+    }
+
     return (
-        
-        <main className='flex justify-center'>
-            
-            <Card className="flex w-[80%] p-1">
-                <h1 className="text-xl font-bold mb-4">Detail CPL</h1>
-                {cpl && (
-                    <div className="mb-4">
-                        <p><strong>Kode:</strong> {cpl.KodeCpl}</p>
-                        <p><strong>Deskripsi:</strong> {cpl.DeskripsiCpl}</p>
-                    </div>
-                )}
+        <main className="flex flex-col flex-1 w-[80%] mx-auto p-5">
+            <p className="flex justify-end items-center text-xl font-bold pb-5 tracking-normal text-left text-gray-900 dark:text-white">
+                {/* Halaman Detail Capaian Pembelajaran Lulusan */}
+                <Button className="cursor-pointer" color={"red"} size='xs' onClick={() => window.close()}>X</Button>
+            </p>
+            <div className="space-y-4">
+                <Card>
+                    {/* {cpl && (
+                        <div className="space-y-2">
+                            <h1 className="text-xl font-bold">{cpl.KodeCpl}</h1>
+                            <p><strong>Kode:</strong> {cpl.KodeCpl}</p>
+                            <p>{cpl.DeskripsiCpl}</p>
+                        </div>
+                    )} */}
 
-                <div className="mb-4">
-                    <p className="font-semibold mb-2">Pilih Profil Lulusan:</p>
-                    {plList.length > 0 ? (
-                        plList.map((pl) => (
-                            <div key={pl.ID} className="flex items-center gap-2 mb-1">
-                                <Checkbox
-                                    id={pl.ID}
-                                    checked={selectedPLs.includes(pl.ID)}
-                                    onChange={() => handleCheckboxChange(pl.ID)}
-                                />
-                                <label htmlFor={pl.ID}>{pl.Kode}</label>
-                                <label htmlFor={pl.Deskripsi}>{pl.Deskripsi}</label>
+                    <div className="space-y-5">
+                        <h1 className="text-2xl font-bold">Detail CPL</h1>
+                        <div className="text-black bg-gray-100 dark:text-white dark:bg-gray-700 shadow p-4 rounded">
+                            <p><strong>Kode CPL:</strong> {cpl.KodeCpl}</p>
+                            <p><strong>Deskripsi:</strong> {cpl.DeskripsiCpl}</p>
+                            <p><strong>Kurikulum:</strong> {cpl.Kurikulum?.TahunKurikulum}</p>
+                            <p><strong>Prodi:</strong> {cpl.Prodi?.Nama}</p>
+                            <p><strong>Fakultas:</strong> {cpl.Prodi?.Fakultas?.Nama}</p>
+                            <p>
+                                <strong>Profil Lulusan:</strong>{' '}
+                                {cpl.Pl?.length > 0
+                                    ? cpl.Pl.map((pl) => pl.Kode).join(', ')
+                                    : <span className="text-gray-400 italic">Belum dipilih</span>}
+                            </p>
+
+                        </div>
+                        {/* <h2 className="text-xl font-semibold">Daftar PL Terkait</h2>
+                        {cpl.Pl && cpl.Pl.length > 0 ? (
+                            <div className="space-y-4">
+                                {cpl.Pl?.map((pl) => (
+                                    <div key={pl.ID} className="border p-4 rounded shadow-sm">
+                                        <p><strong>Kode PL:</strong> {pl.Kode}</p>
+                                        <p><strong>Deskripsi:</strong> {pl.Deskripsi}</p>
+                                        <p><strong>Kurikulum:</strong> {pl.Kurikulum?.TahunKurikulum || <span className="text-gray-500 italic">Tidak tersedia</span>}</p>
+                                        <p><strong>Prodi:</strong> {pl.Prodi?.Nama || <span className="text-gray-500 italic">Tidak tersedia</span>}</p>
+                                        <p><strong>Fakultas:</strong> {pl.Prodi?.Fakultas?.Nama || <span className="text-gray-500 italic">Tidak tersedia</span>}</p>
+                                    </div>
+                                ))}
                             </div>
-                        ))
-                    ) : (
-                        <p className="text-gray-500">Tidak ada data PL tersedia.</p>
-                    )}
-                </div>
+                        ) : (
+                            <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
+                                Tidak ada data PL yang terkait.
+                            </Alert>
+                        )} */}
+                    </div>
+                </Card>
+                <Card>
+                    <div className="mb-4">
+                        <p className="text-base font-bold tracking-normal text-gray-900 dark:text-white mb-5">
+                            Pilih Profil Lulusan
+                        </p>
+                        {plList.length > 0 ? (
+                            <div className="overflow-x-auto">
+                                <table className="table-auto w-full min-w-24 text-sm  text-gray-600 dark:text-white">
+                                    <thead className="text-base text-black bg-gray-200 border-y-1 border-y-gray-200 dark:text-white dark:bg-gray-700 dark:border-gray-700">
+                                        <tr className="text-center">
+                                            <th className="px-6 py-3">Pilih</th>
+                                            <th className="px-6 py-3">Kode</th>
+                                            <th className="px-6 py-3">Deskripsi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {plList.map((pl) => (
+                                            <tr key={pl.ID} className="border-y-1 border-gray-200 dark:border-gray-700">
+                                                <td className="text-center items-center justify-center px-6 py-3">
+                                                    <Checkbox
+                                                        id={`pl-${pl.ID}`}
+                                                        checked={selectedPLs.includes(pl.ID)}
+                                                        onChange={() => handleCheckboxChange(pl.ID)}
+                                                    />
+                                                </td>
+                                                <td className="text-center">
+                                                    <Label htmlFor={`pl-${pl.ID}`}>{pl.Kode}</Label>
+                                                </td>
+                                                <td className="items-center justify-center px-6 py-3">
+                                                    <Label htmlFor={`pl-${pl.ID}`}>{pl.Deskripsi}</Label>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
+                                Tidak ada data PL tersedia.
+                            </Alert>
+                        )}
 
-                <Button onClick={handleSave} color="blue">
-                    Simpan Relasi
-                </Button>
-            </Card>
+                        {/* {plList.length > 0 ? (
+                            plList.map((pl) => (
+                                <div key={pl.ID} className="flex items-center gap-2 mb-1">
+                                    <Checkbox
+                                        id={pl.ID}
+                                        checked={selectedPLs.includes(pl.ID)}
+                                        onChange={() => handleCheckboxChange(pl.ID)}
+                                    />
+                                    <label htmlFor={pl.ID}>{pl.Kode}</label>
+                                    <label htmlFor={pl.Deskripsi}>{pl.Deskripsi}</label>
+                                </div>
+                            ))
+                        ) : (
+                            <p className="text-gray-500">Tidak ada data PL tersedia.</p>
+                        )} */}
+                    </div>
+                </Card>
+                <Card>
+                    <Button className="cursor-pointer" color="blue" onClick={handleSave}>
+                        Simpan Relasi
+                    </Button>
+                </Card>
+                {/* <Card>
+                    <div className="p-6 space-y-6">
+                        <h1 className="text-2xl font-bold">Detail CPL</h1>
+                        <div className="text-black bg-gray-100 dark:text-white dark:bg-gray-700 shadow p-4 rounded">
+                            <p><strong>Kode CPL:</strong> {data.KodeCpl}</p>
+                            <p><strong>Deskripsi:</strong> {data.DeskripsiCpl}</p>
+                            <p><strong>Kurikulum:</strong> {data.Kurikulum?.TahunKurikulum}</p>
+                            <p><strong>Prodi:</strong> {data.Prodi?.Nama}</p>
+                            <p><strong>Fakultas:</strong> {data.Prodi?.Fakultas?.Nama}</p>
+                        </div>
+                        <h2 className="text-xl font-semibold">Daftar PL Terkait</h2>
+                        {data.Pl && data.Pl.length > 0 ? (
+                            <div className="space-y-4">
+                                {data.Pl?.map((pl) => (
+                                    <div key={pl.ID} className="border p-4 rounded shadow-sm">
+                                        <p><strong>Kode PL:</strong> {pl.Kode}</p>
+                                        <p><strong>Deskripsi:</strong> {pl.Deskripsi}</p>
+                                        <p><strong>Kurikulum:</strong> {pl.Kurikulum?.TahunKurikulum}</p>
+                                        <p><strong>Prodi:</strong> {pl.Prodi?.Nama}</p>
+                                        <p><strong>Fakultas:</strong> {pl.Prodi?.Fakultas?.Nama}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
+                                Tidak ada data PL yang terkait.
+                            </Alert>
+                        )}
+                    </div>
+                </Card> */}
+            </div>
         </main>
     );
 }

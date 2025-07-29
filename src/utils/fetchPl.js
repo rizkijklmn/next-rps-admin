@@ -1,7 +1,7 @@
 // utils/fetchPl.js
 
 // KODE DENGAN URLSearchParams
-export const fetchPlData = async (prodiId, kurikulumId) => {
+export const getPlData = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({
         ProdiId: prodiId,
         KurikulumId: kurikulumId,

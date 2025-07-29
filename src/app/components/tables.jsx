@@ -3,7 +3,7 @@ import { IoPencil, IoTrash } from "react-icons/io5";
 import { listCPL, listMatakuliah } from "./Data";
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { fetchCplData } from "@/utils/fetchCpl";
+import { getCplData } from "@/utils/fetchCpl";
 
 function TablesCPL({ prodiId, kurikulumId }) {
 
@@ -12,7 +12,7 @@ function TablesCPL({ prodiId, kurikulumId }) {
     useEffect(() => {
         const getData = async () => {
             try {
-                const result = await fetchCplData(prodiId, kurikulumId);
+                const result = await getCplData(prodiId, kurikulumId);
                 setData(result);
             } catch (error) {
                 console.error(error);

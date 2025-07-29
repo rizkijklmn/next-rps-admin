@@ -2,15 +2,15 @@ import Swal from "sweetalert2";
 import { IoPencil } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
-import { fetchPlData } from "@/utils/fetchPl";
 import ModalCreatePl from "./ModalCreatePl";
+import { getPlData } from "@/utils/fetchPl";
 
 export default function TablePl({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
 
     const getData = async () => {
         try {
-            const result = await fetchPlData(prodiId, kurikulumId);
+            const result = await getPlData(prodiId, kurikulumId);
             setData(result);
         } catch (error) {
             console.error(error);

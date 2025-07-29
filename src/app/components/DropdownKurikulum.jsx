@@ -1,9 +1,10 @@
 // src/app/components/DropdownKurikulum.jsx
 'use client';
 
-import { Dropdown, DropdownItem, Select } from 'flowbite-react';
 import { useEffect, useState } from 'react';
-import { fetchKurikulumData } from '@/utils/fetchKurikulum';
+import { getKurikulumData } from '@/utils/fetchKurikulum';
+import { Dropdown, DropdownItem, Select } from 'flowbite-react';
+
 
 const DropdownKurikulum = ({ onSelect }) => {
     const [stateKurikulum, setStateKurikulum] = useState("Pilih Kurikulum");
@@ -12,7 +13,7 @@ const DropdownKurikulum = ({ onSelect }) => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const data = await fetchKurikulumData();
+                const data = await getKurikulumData();
                 setKurikulumList(data);
             } catch (error) {
                 console.error('Gagal fetch kurikulum:', error);

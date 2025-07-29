@@ -1,7 +1,6 @@
 // utils/fetchCpl.js
 
-// KODE DENGAN URLSearchParams
-export const fetchCplData = async (prodiId, kurikulumId) => {
+const getCplData = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({
         ProdiId: prodiId,
         KurikulumId: kurikulumId,
@@ -29,3 +28,19 @@ export const fetchCplData = async (prodiId, kurikulumId) => {
 
     return await response.json();
 };
+
+const getCplById = async (id) => {
+    const response = await fetch(`http://192.168.54.59:3001/api_obe/cpl/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Gagal mengambil data CPL by ID');
+    }
+    return await response.json();
+}
+
+export { getCplData, getCplById };

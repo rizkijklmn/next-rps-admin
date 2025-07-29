@@ -1,16 +1,17 @@
 import Swal from "sweetalert2";
 import { IoPencil, IoTrash } from "react-icons/io5";
 import { useEffect, useState } from "react";
-import { fetchCplData } from "@/utils/fetchCpl";
 import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 import ModalCreateCpl from "./ModalCreateCpl";
+import Link from "next/link";
+import { getCplData } from "@/utils/fetchCpl";
 
 export default function TableCpl({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
 
     const getData = async () => {
         try {
-            const result = await fetchCplData(prodiId, kurikulumId);
+            const result = await getCplData(prodiId, kurikulumId);
             setData(result);
         } catch (error) {
             console.error(error);
@@ -61,9 +62,10 @@ export default function TableCpl({ prodiId, kurikulumId }) {
             <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
                 <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
                     <tr className="text-base">
-                        <th className="px-5 py-3 w-15">Kode CPL</th>
-                        <th className="px-5 py-3 w-[500px]">Deskripsi CPL</th>
-                        <th className="px-5 py-3 w-40">Ubah/Hapus</th>
+                        <th className="px-5 py-3">Kode CPL</th>
+                        <th className="px-5 py-3">Deskripsi CPL</th>
+                        <th className="px-5 py-3">Detail</th>
+                        <th className="px-5 py-3">Ubah/Hapus</th>
                     </tr>
                 </thead>
                 <tbody className="text-sm">
@@ -71,6 +73,11 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                         <tr className="border border-gray-200 dark:border-gray-600" key={index}>
                             <td className="px-5 py-3 text-center">{cpl.KodeCpl}</td>
                             <td className="px-5 py-3">{cpl.DeskripsiCpl}</td>
+                            <td className="px-5 py-3 text-center">
+                                <Link href={`/cp-lulusan/${cpl.ID}`} target="_blank" className="text-blue-500 underline text-sm" >
+                                    Lihat detail
+                                </Link>
+                            </td>
                             <td className="flex justify-center gap-1 px-5 py-3">
                                 {/* BUTTON EDIT */}
                                 <Button className="cursor-pointer" outline color={"green"} /* onClick={() => openEditModal(cpl)} */>

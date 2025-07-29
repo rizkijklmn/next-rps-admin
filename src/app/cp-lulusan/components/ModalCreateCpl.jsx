@@ -76,7 +76,7 @@ const ModalCreateCpl = ({ kurikulumId, prodiId, onSuccess }) => {
                                             : "Masukkan Kode CPL"
                                     }
                                     {...register('KodeCpl', { required: 'Kode CPL wajib diisi' })}
-                                    color={errors.KodeCpl ? 'failure' : 'grey'}
+                                    color={errors.KodeCpl ? 'failure' : 'gray'}
                                 />
                             </div>
                             <div>
@@ -92,7 +92,7 @@ const ModalCreateCpl = ({ kurikulumId, prodiId, onSuccess }) => {
                                             : "Masukkan deskripsi CPL"
                                     }
                                     {...register('DeskripsiCpl', { required: 'Deskripsi CPL wajib diisi' })}
-                                    color={errors.DeskripsiCpl ? 'failure' : 'grey'}
+                                    color={errors.DeskripsiCpl ? 'failure' : 'gray'}
                                 />
                             </div>
                         </div>

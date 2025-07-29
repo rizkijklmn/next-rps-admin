@@ -2,7 +2,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getKurikulumData } from '@/utils/fetchKurikulum';
+import { getAllKurikulum } from '@/utils/fetchKurikulum';
 import { Dropdown, DropdownItem, Select } from 'flowbite-react';
 
 
@@ -13,7 +13,7 @@ const DropdownKurikulum = ({ onSelect }) => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const data = await getKurikulumData();
+                const data = await getAllKurikulum();
                 setKurikulumList(data);
             } catch (error) {
                 console.error('Gagal fetch kurikulum:', error);

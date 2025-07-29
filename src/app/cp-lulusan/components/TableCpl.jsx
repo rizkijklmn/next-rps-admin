@@ -3,8 +3,7 @@ import { IoPencil, IoTrash } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { Alert, Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 import ModalCreateCpl from "./ModalCreateCpl";
-import Link from "next/link";
-import { getCplData } from "@/utils/fetchCpl";
+import { getCplByProdiAndKurikulum } from "@/utils/fetchCpl";
 import { HiInformationCircle } from "react-icons/hi";
 
 export default function TableCpl({ prodiId, kurikulumId }) {
@@ -12,7 +11,7 @@ export default function TableCpl({ prodiId, kurikulumId }) {
 
     const getData = async () => {
         try {
-            const result = await getCplData(prodiId, kurikulumId);
+            const result = await getCplByProdiAndKurikulum(prodiId, kurikulumId);
             setData(result);
         } catch (error) {
             console.error(error);
@@ -90,7 +89,21 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                                 </td>
                                 <td className="flex justify-center gap-1 px-5 py-3">
                                     {/* BUTTON EDIT */}
-                                    <Button className="cursor-pointer" outline color={"green"} /* onClick={() => openEditModal(cpl)} */>
+                                    <Button
+                                        outline
+                                        color={"green"}
+                                        className="cursor-pointer"
+                                        onClick={() => Swal.fire({
+                                            title: 'Ubah CPL',
+                                            text: 'Apakah Anda yakin ingin mengubah CPL ini?',
+                                            icon: 'question',
+                                            showCancelButton: true,
+                                            confirmButtonColor: '#3085d6',
+                                            cancelButtonColor: '#d33',
+                                            confirmButtonText: 'Ya, ubah CPL',
+                                            cancelButtonText: 'Batal'
+                                        })}
+                                        /* onClick={() => openEditModal(pl)} */>
                                         <IoPencil size={15} />
                                     </Button>
 

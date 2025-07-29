@@ -1,6 +1,6 @@
 // src/utils/fetchCpl.js
 
-const getCplData = async (prodiId, kurikulumId) => {
+const getCplByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({
         ProdiId: prodiId,
         KurikulumId: kurikulumId,
@@ -43,4 +43,4 @@ const getCplById = async (id) => {
     return await response.json();
 }
 
-export { getCplData, getCplById };
+export { getCplByProdiAndKurikulum, getCplById };

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiPlus } from 'react-icons/hi';
-import { Modal, Button, TextInput, Textarea, ModalHeader, ModalBody, ModalFooter, Label, Checkbox } from 'flowbite-react';
+import { Modal, Button, TextInput, Textarea, ModalHeader, ModalBody, ModalFooter, Label, Checkbox, HelperText } from 'flowbite-react';
 import Swal from 'sweetalert2';
 
 const ModalCreatePl = ({ kurikulumId, prodiId, onSuccess }) => {
@@ -73,7 +73,7 @@ const ModalCreatePl = ({ kurikulumId, prodiId, onSuccess }) => {
                                             : "Masukkan Kode PL"
                                     }
                                     {...register('KodePl', { required: 'Kode PL wajib diisi' })}
-                                    color={errors.KodePl ? 'failure' : 'grey'}
+                                    color={errors.KodePl ? 'failure' : 'gray'}
                                 />
                             </div>
                             <div>
@@ -89,7 +89,7 @@ const ModalCreatePl = ({ kurikulumId, prodiId, onSuccess }) => {
                                             : "Masukkan deskripsi PL"
                                     }
                                     {...register('DeskripsiPl', { required: 'Deskripsi PL wajib diisi' })}
-                                    color={errors.DeskripsiPl ? 'failure' : 'grey'}
+                                    color={errors.DeskripsiPl ? 'failure' : 'gray'}
                                 />
                             </div>
                         </div>

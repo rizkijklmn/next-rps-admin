@@ -2,12 +2,11 @@
 "use client"
 
 import { useState } from "react";
-import { Alert, Button, Card } from "flowbite-react"
-
+import { Alert, Card } from "flowbite-react"
 import { HiInformationCircle } from "react-icons/hi";
 
 // COMPONENT
-import { ModalCreateCpl, TableCpl } from "./components/";
+import TableCpl from "./components/TableCpl";
 import DropdownKurikulum from "../components/DropdownKurikulum";
 
 export default function CPLClientSide() {

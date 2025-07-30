@@ -41,12 +41,58 @@ export default function DetailCplPage() {
     }, [id]);
 
     const handleCheckboxChange = async (plId) => {
-        setSelectedPLs((prev) =>
-            prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
-        );
+        const isSelected = selectedPLs.includes(plId);
+
+        if (isSelected) {
+            // Hapus relasi di backend
+            try {
+                const response = await fetch('http://192.168.54.59:3001/api_obe/pl/cpl', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        PlId: plId,
+                        CplId: parseInt(id),
+                    }),
+                })
+
+                if (!response.ok) {
+                    throw new Error(`Gagal menghapus relasi untuk PL ID ${plId}`);
+                }
+
+                // Update state setelah berhasil hapus
+                setSelectedPLs((prev) => prev.filter((id) => id !== plId));
+            } catch (error) {
+                console.error('Error saat menghapus relasi:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal!',
+                    text: 'Terjadi kesalahan saat menghapus relasi.',
+                });
+            }
+        } else {
+            // Tambah relasi ke state
+            setSelectedPLs((prev) =>
+                prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
+            );
+        }
+        // setSelectedPLs((prev) =>
+        //     prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
+        // );
     };
 
     const handleSave = async () => {
+        // Periksa apakah ada PL yang dipilih
+        // if (selectedPLs.length === 0) {
+        //     Swal.fire({
+        //         icon: 'info',
+        //         title: 'Tidak ada PL dipilih',
+        //         text: 'Silakan pilih minimal satu PL sebelum menyimpan.',
+        //     });
+        //     return;
+        // }
+
         // Kirim relasi CPL ↔ PL ke backend
         try {
             for (const plId of selectedPLs) {

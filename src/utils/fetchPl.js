@@ -1,6 +1,6 @@
 // src/utils/fetchPl.js
 
-export const getPlData = async (prodiId, kurikulumId) => {
+export const getPlByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({
         ProdiId: prodiId,
         KurikulumId: kurikulumId,
@@ -10,7 +10,7 @@ export const getPlData = async (prodiId, kurikulumId) => {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-        },
+        }
     });
     if (!response.ok) {
         throw new Error('Gagal mengambil data PL');

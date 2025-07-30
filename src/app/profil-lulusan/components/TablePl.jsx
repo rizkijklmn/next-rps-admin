@@ -3,7 +3,7 @@ import { IoPencil } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { Alert, Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 import ModalCreatePl from "./ModalCreatePl";
-import { getPlData } from "@/utils/fetchPl";
+import { getPlByProdiAndKurikulum } from "@/utils/fetchPl";
 import { HiInformationCircle } from "react-icons/hi";
 
 export default function TablePl({ prodiId, kurikulumId }) {
@@ -11,7 +11,7 @@ export default function TablePl({ prodiId, kurikulumId }) {
 
     const getData = async () => {
         try {
-            const result = await getPlData(prodiId, kurikulumId);
+            const result = await getPlByProdiAndKurikulum(prodiId, kurikulumId);
             setData(result);
         } catch (error) {
             console.error(error);
@@ -25,7 +25,7 @@ export default function TablePl({ prodiId, kurikulumId }) {
     return (
         <div>
             <div className="flex justify-end mb-4">
-                <ModalCreatePl kurikulumId={kurikulumId} prodiId={prodiId} onSuccess={getData} />  {/* ini akan refetch data setelah submit */}
+                <ModalCreatePl kurikulumId={kurikulumId} prodiId={prodiId} onSuccess={getData} />  {/* onSuccess akan refetch data setelah submit */}
             </div>
 
             {data.length > 0 ? (
@@ -78,7 +78,6 @@ export default function TablePl({ prodiId, kurikulumId }) {
                 </Alert>
                 // <p className="text-center text-gray-500">Tidak ada data PL tersedia.</p>
             )}
-
         </div>
     )
 }

@@ -3,7 +3,7 @@
 import Swal from 'sweetalert2';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { getPlData } from '@/utils/fetchPl';
+import { getPlByProdiAndKurikulum } from '@/utils/fetchPl';
 import { getCplById } from '@/utils/fetchCpl';
 import { HiInformationCircle } from 'react-icons/hi';
 import { Checkbox, Button, Card, Label, Alert, Spinner } from 'flowbite-react';
@@ -17,8 +17,8 @@ export default function DetailCplPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const cplDetail = await getCplById(id);
-                setCpl(cplDetail);
+                const cplDetail = await getCplById(id); // Ambil detail CPL berdasarkan ID
+                setCpl(cplDetail); // Simpan ke state
 
                 // Ambil ID PL yang sudah berelasi dengan CPL
                 if (cplDetail.Pl && cplDetail.Pl.length > 0) {
@@ -26,10 +26,11 @@ export default function DetailCplPage() {
                     setSelectedPLs(relatedPlIds);
                 }
 
+                // Ambil data PL berdasarkan ProdiId dan KurikulumId
                 const { ProdiId, KurikulumId } = cplDetail;
                 if (ProdiId && KurikulumId) {
-                    const plData = await getPlData(ProdiId, KurikulumId);
-                    setPlList(plData);
+                    const plData = await getPlByProdiAndKurikulum(ProdiId, KurikulumId);
+                    setPlList(plData); // Simpan daftar PL yang tersedia
                 }
             } catch (error) {
                 console.error("Gagal fetch data:", error);
@@ -39,7 +40,7 @@ export default function DetailCplPage() {
         fetchData();
     }, [id]);
 
-    const handleCheckboxChange = (plId) => {
+    const handleCheckboxChange = async (plId) => {
         setSelectedPLs((prev) =>
             prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
         );
@@ -70,11 +71,8 @@ export default function DetailCplPage() {
                 text: 'Semua relasi berhasil disimpan!',
                 showConfirmButton: true
             }).then(() => {
-                window.close(); // baru tutup tab setelah alert ditutup
+                window.close(); // tutup tab setelah alert ditutup
             });
-
-            // alert('Semua relasi berhasil disimpan!');
-            // window.close();
         } catch (error) {
             console.error('Error saat menyimpan relasi:', error);
             Swal.fire({
@@ -99,12 +97,10 @@ export default function DetailCplPage() {
     // if (!data) return <div className="p-4">Memuat data...</div>;
     if (!cpl) {
         return (
-
             <div className="fixed inset-0 flex flex-col justify-center items-center bg-opacity-30 z-50">
                 <Spinner size="xl" aria-label="Memuat data..." />
                 <p className="mt-4 text-lg font-medium">Memuat data...</p>
             </div>
-
         );
     }
 
@@ -134,9 +130,9 @@ export default function DetailCplPage() {
                             <p><strong>Fakultas:</strong> {cpl.Prodi?.Fakultas?.Nama}</p>
                             <p>
                                 <strong>Profil Lulusan:</strong>{' '}
-                                {cpl.Pl?.length > 0
-                                    ? cpl.Pl.map((pl) => pl.Kode).join(', ')
-                                    : <span className="text-gray-400 italic">Belum dipilih</span>}
+                                {
+                                    cpl.Pl?.length > 0 ? cpl.Pl.map((pl) => pl.Kode).join(', ') : <span className="text-gray-400 italic">Belum dipilih</span>
+                                }
                             </p>
 
                         </div>

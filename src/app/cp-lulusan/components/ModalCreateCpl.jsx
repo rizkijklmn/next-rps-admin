@@ -1,5 +1,6 @@
 'use client';
 
+import { API_BASE_OBE } from '@/utils/config';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiPlus } from 'react-icons/hi';
@@ -19,7 +20,7 @@ const ModalCreateCpl = ({ kurikulumId, prodiId, onSuccess }) => {
         };
 
         try {
-            const response = await fetch('http://192.168.54.59:3001/api_obe/cpl', { // KODE ASLI
+            const response = await fetch(`${API_BASE_OBE}/api_obe/cpl`, { // KODE ASLI
                 // const response = await fetch('/api/post-cpl', { // KODE DENGAN PROXY
                 method: 'POST',
                 headers: {
@@ -37,7 +38,7 @@ const ModalCreateCpl = ({ kurikulumId, prodiId, onSuccess }) => {
                 timer: 1500,
                 showConfirmButton: false
             })
-        
+
             if (onSuccess) onSuccess(); // Refetch data di tabel
             setOpenModal(false);
             reset();
@@ -57,7 +58,7 @@ const ModalCreateCpl = ({ kurikulumId, prodiId, onSuccess }) => {
                 <HiPlus className="mr-1" />
                 Tambah
             </Button>
-            
+
             <Modal dismissible show={openModal} onClose={() => { setOpenModal(false), reset() }}>
 
                 <form onSubmit={handleSubmit(onSubmit)}>

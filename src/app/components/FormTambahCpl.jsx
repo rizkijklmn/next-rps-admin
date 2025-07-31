@@ -1,3 +1,4 @@
+import { API_BASE_OBE } from '@/utils/config';
 import { useForm } from 'react-hook-form';
 import { TextInput, Textarea, Button } from 'flowbite-react';
 
@@ -13,7 +14,7 @@ const FormTambahCPL = ({ kurikulumId }) => {
         };
 
         try {
-            const response = await fetch('http://192.168.54.59:3001/api_obe/cpl', {
+            const response = await fetch(`${API_BASE_OBE}/api_obe/cpl`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

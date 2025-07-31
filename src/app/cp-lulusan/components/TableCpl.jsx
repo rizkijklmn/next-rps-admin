@@ -78,34 +78,34 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                                     {/* <Link href={`/cp-lulusan/${cpl.ID}`} target="_blank" className="text-blue-500 underline text-sm" >
                                         Lihat detail
                                     </Link> */}
-
                                     <span
                                         onClick={() => window.open(`/cp-lulusan/${cpl.ID}`, '_blank', 'noopener,noreferrer')}
                                         className="cursor-pointer text-blue-700 hover:text-blue-500 underline"
                                     >
                                         Lihat detail
                                     </span>
-
                                 </td>
-                                <td className="flex justify-center gap-1 px-5 py-3">
+                                <td className="px-5 py-3">
                                     {/* BUTTON EDIT */}
-                                    <Button
-                                        outline
-                                        color={"green"}
-                                        className="cursor-pointer"
-                                        onClick={() => Swal.fire({
-                                            title: 'Ubah CPL',
-                                            text: 'Apakah Anda yakin ingin mengubah CPL ini?',
-                                            icon: 'question',
-                                            showCancelButton: true,
-                                            confirmButtonColor: '#3085d6',
-                                            cancelButtonColor: '#d33',
-                                            confirmButtonText: 'Ya, ubah CPL',
-                                            cancelButtonText: 'Batal'
-                                        })}
+                                    <div className="flex justify-center items-center gap-1">
+                                        <Button
+                                            outline
+                                            color={"green"}
+                                            className="cursor-pointer"
+                                            onClick={() => Swal.fire({
+                                                title: 'Ubah CPL',
+                                                text: 'Apakah Anda yakin ingin mengubah CPL ini?',
+                                                icon: 'question',
+                                                showCancelButton: true,
+                                                confirmButtonColor: '#3085d6',
+                                                cancelButtonColor: '#d33',
+                                                confirmButtonText: 'Ya, ubah CPL',
+                                                cancelButtonText: 'Batal'
+                                            })}
                                         /* onClick={() => openEditModal(pl)} */>
-                                        <IoPencil size={15} />
-                                    </Button>
+                                            <IoPencil size={15} />
+                                        </Button>
+                                    </div>
 
                                     {/* BUTTON HAPUS */}
                                     {/* <Button className="cursor-pointer" outline color={"red"}>

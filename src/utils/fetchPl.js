@@ -1,4 +1,5 @@
 // src/utils/fetchPl.js
+import { API_BASE_OBE } from "./config";
 
 export const getPlByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({
@@ -6,7 +7,7 @@ export const getPlByProdiAndKurikulum = async (prodiId, kurikulumId) => {
         KurikulumId: kurikulumId,
     });
 
-    const response = await fetch(`http://192.168.54.59:3001/api_obe/pl/prodi/kurikulum?${params.toString()}`, {
+    const response = await fetch(`${API_BASE_OBE}/api_obe/pl/prodi/kurikulum?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

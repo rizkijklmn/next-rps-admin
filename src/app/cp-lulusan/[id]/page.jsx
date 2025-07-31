@@ -7,23 +7,29 @@ import { getPlByProdiAndKurikulum } from '@/utils/fetchPl';
 import { getCplById } from '@/utils/fetchCpl';
 import { HiInformationCircle } from 'react-icons/hi';
 import { Checkbox, Button, Card, Label, Alert, Spinner } from 'flowbite-react';
+import { API_BASE_OBE } from '@/utils/config';
 
 export default function DetailCplPage() {
-    const { id } = useParams();
-    const [cpl, setCpl] = useState(null);
-    const [plList, setPlList] = useState([]);
-    const [selectedPLs, setSelectedPLs] = useState([]);
+    const { id } = useParams(); // mengambil id dari URL
+    const [cpl, setCpl] = useState(null); // detail CPL
+    const [plList, setPlList] = useState([]); // daftar PL yg tersedia
+    const [selectedPLs, setSelectedPLs] = useState([]); // PL yg dipilih (checkbox)
+    const [initialPLs, setInitialPLs] = useState([]); // PL yg awalnya sudah berelasi
 
+    // Saat komponen dimuat, data CPL diambil berdasarkan id dari URL.
+    // Jika CPL memiliki relasi PL, maka ID-nya disimpan ke selectedPLs dan initialPLs.
+    // Kemudian, data PL diambil berdasarkan ProdiId dan KurikulumId dari CPL.
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const cplDetail = await getCplById(id); // Ambil detail CPL berdasarkan ID
                 setCpl(cplDetail); // Simpan ke state
 
-                // Ambil ID PL yang sudah berelasi dengan CPL
+                // Simpan relasi awal PL yang berelasi dengan CPL
                 if (cplDetail.Pl && cplDetail.Pl.length > 0) {
                     const relatedPlIds = cplDetail.Pl.map((pl) => pl.ID);
                     setSelectedPLs(relatedPlIds);
+                    setInitialPLs(relatedPlIds); // Simpan relasi awal
                 }
 
                 // Ambil data PL berdasarkan ProdiId dan KurikulumId
@@ -41,45 +47,45 @@ export default function DetailCplPage() {
     }, [id]);
 
     const handleCheckboxChange = async (plId) => {
-        const isSelected = selectedPLs.includes(plId);
+        // const isSelected = selectedPLs.includes(plId);
 
-        if (isSelected) {
-            // Hapus relasi di backend
-            try {
-                const response = await fetch('http://192.168.54.59:3001/api_obe/pl/cpl', {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        PlId: plId,
-                        CplId: parseInt(id),
-                    }),
-                })
+        // if (isSelected) {
+        //     // Hapus relasi di backend
+        //     try {
+        //         const response = await fetch('http://192.168.54.59:3001/api_obe/pl/cpl', {
+        //             method: 'DELETE',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //             },
+        //             body: JSON.stringify({
+        //                 PlId: plId,
+        //                 CplId: parseInt(id),
+        //             }),
+        //         })
 
-                if (!response.ok) {
-                    throw new Error(`Gagal menghapus relasi untuk PL ID ${plId}`);
-                }
+        //         if (!response.ok) {
+        //             throw new Error(`Gagal menghapus relasi untuk PL ID ${plId}`);
+        //         }
 
-                // Update state setelah berhasil hapus
-                setSelectedPLs((prev) => prev.filter((id) => id !== plId));
-            } catch (error) {
-                console.error('Error saat menghapus relasi:', error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal!',
-                    text: 'Terjadi kesalahan saat menghapus relasi.',
-                });
-            }
-        } else {
-            // Tambah relasi ke state
-            setSelectedPLs((prev) =>
-                prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
-            );
-        }
-        // setSelectedPLs((prev) =>
-        //     prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
-        // );
+        //         // Update state setelah berhasil hapus
+        //         setSelectedPLs((prev) => prev.filter((id) => id !== plId));
+        //     } catch (error) {
+        //         console.error('Error saat menghapus relasi:', error);
+        //         Swal.fire({
+        //             icon: 'error',
+        //             title: 'Gagal!',
+        //             text: 'Terjadi kesalahan saat menghapus relasi.',
+        //         });
+        //     }
+        // } else {
+        //     // Tambah relasi ke state
+        //     setSelectedPLs((prev) =>
+        //         prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
+        //     );
+        // }
+        setSelectedPLs((prev) =>
+            prev.includes(plId) ? prev.filter((id) => id !== plId) : [...prev, plId]
+        );
     };
 
     const handleSave = async () => {
@@ -93,40 +99,109 @@ export default function DetailCplPage() {
         //     return;
         // }
 
+        const added = selectedPLs.filter((id) => !initialPLs.includes(id));
+        const removed = initialPLs.filter((id) => !selectedPLs.includes(id));
+
         // Kirim relasi CPL ↔ PL ke backend
-        try {
-            for (const plId of selectedPLs) {
-                const response = await fetch('http://192.168.54.59:3001/api_obe/pl/cpl', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        PlId: plId,
-                        CplId: parseInt(id), // pastikan id CPL berupa angka
-                    }),
+        if (added.length > 0 || removed.length > 0) {
+            try {
+                // Tambah relasi baru
+                for (const plId of added) {
+                    const response = await fetch(`${API_BASE_OBE}/api_obe/pl/cpl`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            PlId: plId,
+                            CplId: parseInt(id), // pastikan id CPL berupa angka
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Gagal menambahkan relasi untuk PL ID ${plId}`);
+                    }
+                }
+                // Hapus relasi yang di-uncheck
+                for (const plId of removed) {
+                    const response = await fetch(`${API_BASE_OBE}/api_obe/pl/cpl`, {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            PlId: plId,
+                            CplId: parseInt(id), // pastikan id CPL berupa angka
+                        }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Gagal menghapus relasi untuk PL ID ${plId}`);
+                    }
+                }
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Semua relasi berhasil ditambahkan!',
+                    showConfirmButton: true
+                }).then(() => {
+                    window.close(); // tutup tab setelah alert ditutup
                 });
 
-                if (!response.ok) {
-                    throw new Error(`Gagal menyimpan relasi untuk PL ID ${plId}`);
-                }
+                setInitialPLs([...selectedPLs]); // Update relasi awal
+            } catch (error) {
+                console.error('Error saat menyimpan relasi:', error);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Terjadi kesalahan saat menambahkan menyimpan relasi!',
+                })
             }
+        } else {
             Swal.fire({
-                icon: 'success',
-                title: 'Berhasil!',
-                text: 'Semua relasi berhasil disimpan!',
+                icon: 'info',
+                title: 'Tidak ada perubahan!',
+                text: 'Tidak ada relasi CPL - PL yang berubah.',
                 showConfirmButton: true
             }).then(() => {
                 window.close(); // tutup tab setelah alert ditutup
             });
-        } catch (error) {
-            console.error('Error saat menyimpan relasi:', error);
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops!',
-                text: 'Terjadi kesalahan saat menambahkan menyimpan relasi!',
-            })
         }
+
+        // try {
+        //     for (const plId of added) {
+        //         const response = await fetch('http://192.168.54.59:3001/api_obe/pl/cpl', {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //             },
+        //             body: JSON.stringify({
+        //                 PlId: plId,
+        //                 CplId: parseInt(id), // pastikan id CPL berupa angka
+        //             }),
+        //         });
+
+        //         if (!response.ok) {
+        //             throw new Error(`Gagal menyimpan relasi untuk PL ID ${plId}`);
+        //         }
+        //     }
+        //     Swal.fire({
+        //         icon: 'success',
+        //         title: 'Berhasil!',
+        //         text: 'Semua relasi berhasil disimpan!',
+        //         showConfirmButton: true
+        //     }).then(() => {
+        //         window.close(); // tutup tab setelah alert ditutup
+        //     });
+        // } catch (error) {
+        //     console.error('Error saat menyimpan relasi:', error);
+        //     Swal.fire({
+        //         icon: 'warning',
+        //         title: 'Oops!',
+        //         text: 'Terjadi kesalahan saat menambahkan menyimpan relasi!',
+        //     })
+        // }
 
         console.log("Simpan relasi:", { cplId: id, plIds: selectedPLs });
     };
@@ -152,9 +227,9 @@ export default function DetailCplPage() {
 
     return (
         <main className="flex flex-col flex-1 w-[80%] mx-auto p-5">
-            <p className="flex justify-end items-center text-xl font-bold pb-5 tracking-normal text-left text-gray-900 dark:text-white">
-                {/* Halaman Detail Capaian Pembelajaran Lulusan */}
-                <Button className="cursor-pointer" color={"red"} size='xs' onClick={() => window.close()}>X</Button>
+            <p className="flex items-center text-xl font-bold pb-5 tracking-normal text-left text-gray-900 dark:text-white">
+                Halaman Detail Capaian Pembelajaran Lulusan
+                {/* <Button className="cursor-pointer" color={"red"} size='xs' onClick={() => window.close()}>X</Button> */}
             </p>
             <div className="space-y-4">
                 <Card>

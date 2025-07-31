@@ -43,26 +43,27 @@ export default function TablePl({ prodiId, kurikulumId }) {
                                 <tr className="border border-gray-200 dark:border-gray-600" key={index}>
                                     <td className="px-5 py-3 text-center">{pl.Kode}</td>
                                     <td className="px-5 py-3">{pl.Deskripsi}</td>
-                                    <td className="flex justify-center gap-1 px-5 py-3">
+                                    <td className="px-5 py-3">
                                         {/* BUTTON EDIT */}
-                                        <Button
-                                            outline
-                                            color={"green"}
-                                            className="cursor-pointer"
-                                            onClick={() => Swal.fire({
-                                                title: 'Ubah PL',
-                                                text: 'Apakah Anda yakin ingin mengubah PL ini?',
-                                                icon: 'question',
-                                                showCancelButton: true,
-                                                confirmButtonColor: '#3085d6',
-                                                cancelButtonColor: '#d33',
-                                                confirmButtonText: 'Ya, ubah PL',
-                                                cancelButtonText: 'Batal'
-                                            })}
+                                        <div className="flex justify-center items-center gap-1">
+                                            <Button
+                                                outline
+                                                color={"green"}
+                                                className="cursor-pointer"
+                                                onClick={() => Swal.fire({
+                                                    title: 'Ubah PL',
+                                                    text: 'Apakah Anda yakin ingin mengubah PL ini?',
+                                                    icon: 'question',
+                                                    showCancelButton: true,
+                                                    confirmButtonColor: '#3085d6',
+                                                    cancelButtonColor: '#d33',
+                                                    confirmButtonText: 'Ya, ubah PL',
+                                                    cancelButtonText: 'Batal'
+                                                })}
                                             /* onClick={() => openEditModal(pl)} */>
-                                            <IoPencil size={15} />
-                                        </Button>
-
+                                                <IoPencil size={15} />
+                                            </Button>
+                                        </div>
                                         {/* BUTTON HAPUS */}
                                         {/* <Button className="cursor-pointer" outline color={"red"}>
                                         <IoTrash />

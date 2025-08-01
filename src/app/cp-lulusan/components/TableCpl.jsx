@@ -2,12 +2,15 @@ import Swal from "sweetalert2";
 import { IoPencil, IoTrash } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { Alert, Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
-import ModalCreateCpl from "./ModalCreateCpl";
 import { getCplByProdiAndKurikulum } from "@/utils/fetchCpl";
 import { HiInformationCircle } from "react-icons/hi";
+import ModalCreateCpl from "./ModalCreateCpl";
+import ModalEditCpl from "./ModalEditCpl";
 
 export default function TableCpl({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [selectedCpl, setSelecteCpl] = useState(null);
 
     const getData = async () => {
         try {
@@ -21,6 +24,11 @@ export default function TableCpl({ prodiId, kurikulumId }) {
     useEffect(() => {
         getData();
     }, [prodiId, kurikulumId]);
+
+    const openEditModal = (cpl) => {
+        setSelecteCpl(cpl);
+        setIsEditOpen(true);
+    };
 
     // const [selectedCPL, setSelectedCPL] = useState(null);
     // const [editKodeCPL, setEditKodeCPL] = useState('');
@@ -92,21 +100,11 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                                             outline
                                             color={"green"}
                                             className="cursor-pointer"
-                                            onClick={() => Swal.fire({
-                                                title: 'Ubah CPL',
-                                                text: 'Apakah Anda yakin ingin mengubah CPL ini?',
-                                                icon: 'question',
-                                                showCancelButton: true,
-                                                confirmButtonColor: '#3085d6',
-                                                cancelButtonColor: '#d33',
-                                                confirmButtonText: 'Ya, ubah CPL',
-                                                cancelButtonText: 'Batal'
-                                            })}
-                                        /* onClick={() => openEditModal(pl)} */>
+                                            onClick={() => openEditModal(cpl)}
+                                        >
                                             <IoPencil size={15} />
                                         </Button>
                                     </div>
-
                                     {/* BUTTON HAPUS */}
                                     {/* <Button className="cursor-pointer" outline color={"red"}>
                                         <IoTrash />
@@ -122,36 +120,14 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                 </Alert>
             )}
 
-            {/* Modal */}
-            {/* {selectedCPL && (
-                <Modal popup className="p-9" size="2xl" show={openEditModal} onClose={closeEditModal} >
-                    <ModalHeader className="p-6">Ubah Data CPL</ModalHeader>
-                    <ModalBody>
-                        <div className="space-y-6">
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label className="text-base font-bold">Kode CPL</Label>
-                                </div>
-                                <TextInput value={editKodeCPL} disabled />
-                            </div>
-                            <div>
-                                <div className="mb-2 block">
-                                    <Label className="text-base font-bold">Rumusan CPL</Label>
-                                </div>
-                                <Textarea
-                                    rows={4}
-                                    value={editRumusanCPL}
-                                    onChange={(e) => setEditRumusanCPL(e.target.value)}
-                                    required />
-                            </div>
-                        </div>
-                    </ModalBody>
-                    <ModalFooter className="flex gap-2 justify-end">
-                        <Button type="submit" className="cursor-pointer" color={"green"} onClick={handleSave}>Simpan</Button>
-                        <Button type="submit" className="cursor-pointer" outline color={"red"} onClick={closeEditModal}>Batal</Button>
-                    </ModalFooter>
-                </Modal>
-            )} */}
+            {selectedCpl && (
+                <ModalEditCpl
+                    isOpen={isEditOpen}
+                    onClose={() => setIsEditOpen(false)}
+                    cplData={selectedCpl}
+                    onUpdated={getData}
+                />
+            )}
         </div>
     )
 }

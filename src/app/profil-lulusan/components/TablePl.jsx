@@ -2,9 +2,9 @@ import Swal from "sweetalert2";
 import { IoPencil } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { Alert, Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
-import ModalCreatePl from "./ModalCreatePl";
 import { getPlByProdiAndKurikulum } from "@/utils/fetchPl";
 import { HiInformationCircle } from "react-icons/hi";
+import ModalCreatePl from "./ModalCreatePl";
 import ModalEditPl from "./ModalEditPl";
 
 export default function TablePl({ prodiId, kurikulumId }) {

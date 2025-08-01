@@ -82,7 +82,7 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                                         onClick={() => window.open(`/cp-lulusan/${cpl.ID}`, '_blank', 'noopener,noreferrer')}
                                         className="cursor-pointer text-blue-700 hover:text-blue-500 underline"
                                     >
-                                        Lihat detail
+                                        Relasi ke PL
                                     </span>
                                 </td>
                                 <td className="px-5 py-3">

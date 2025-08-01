@@ -5,9 +5,12 @@ import { Alert, Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Texta
 import ModalCreatePl from "./ModalCreatePl";
 import { getPlByProdiAndKurikulum } from "@/utils/fetchPl";
 import { HiInformationCircle } from "react-icons/hi";
+import ModalEditPl from "./ModalEditPl";
 
 export default function TablePl({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
+    const [isEditOpen, setIsEditOpen] = useState(false);
+    const [selectedPl, setSelectePl] = useState(null);
 
     const getData = async () => {
         try {
@@ -21,6 +24,11 @@ export default function TablePl({ prodiId, kurikulumId }) {
     useEffect(() => {
         getData();
     }, [prodiId, kurikulumId]);
+
+    const openEditModal = (pl) => {
+        setSelectePl(pl);
+        setIsEditOpen(true);
+    };
 
     return (
         <div>
@@ -50,17 +58,8 @@ export default function TablePl({ prodiId, kurikulumId }) {
                                                 outline
                                                 color={"green"}
                                                 className="cursor-pointer"
-                                                onClick={() => Swal.fire({
-                                                    title: 'Ubah PL',
-                                                    text: 'Apakah Anda yakin ingin mengubah PL ini?',
-                                                    icon: 'question',
-                                                    showCancelButton: true,
-                                                    confirmButtonColor: '#3085d6',
-                                                    cancelButtonColor: '#d33',
-                                                    confirmButtonText: 'Ya, ubah PL',
-                                                    cancelButtonText: 'Batal'
-                                                })}
-                                            /* onClick={() => openEditModal(pl)} */>
+                                                onClick={() => openEditModal(pl)}
+                                            >
                                                 <IoPencil size={15} />
                                             </Button>
                                         </div>
@@ -79,6 +78,16 @@ export default function TablePl({ prodiId, kurikulumId }) {
                 </Alert>
                 // <p className="text-center text-gray-500">Tidak ada data PL tersedia.</p>
             )}
+
+            {selectedPl && (
+                <ModalEditPl
+                    isOpen={isEditOpen}
+                    onClose={() => setIsEditOpen(false)}
+                    plData={selectedPl}
+                    onUpdated={getData}
+                />
+            )}
+
         </div>
     )
 }

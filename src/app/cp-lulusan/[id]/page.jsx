@@ -143,7 +143,7 @@ export default function DetailCplPage() {
                 Swal.fire({
                     icon: 'success',
                     title: 'Berhasil!',
-                    text: 'Semua relasi berhasil ditambahkan!',
+                    text: 'Relasi berhasil disimpan!',
                     showConfirmButton: true
                 }).then(() => {
                     window.close(); // tutup tab setelah alert ditutup
@@ -155,14 +155,14 @@ export default function DetailCplPage() {
                 Swal.fire({
                     icon: 'warning',
                     title: 'Oops!',
-                    text: 'Terjadi kesalahan saat menambahkan menyimpan relasi!',
+                    text: 'Terjadi kesalahan saat menyimpan relasi!',
                 })
             }
         } else {
             Swal.fire({
                 icon: 'info',
                 title: 'Tidak ada perubahan!',
-                text: 'Tidak ada relasi CPL - PL yang berubah.',
+                text: 'Tidak ada relasi CPL-PL yang berubah.',
                 showConfirmButton: true
             }).then(() => {
                 window.close(); // tutup tab setelah alert ditutup

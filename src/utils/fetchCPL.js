@@ -8,7 +8,7 @@ const getCplByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     });
 
     // KODE ASLI
-    const response = await fetch(`${API_BASE_URL}/api_obe/cpl/prodi/kurikulum?${params.toString()}`, {
+    const response = await fetch(`${API_BASE_OBE}/api_obe/cpl/prodi/kurikulum?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

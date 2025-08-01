@@ -74,7 +74,7 @@ export default function TablePl({ prodiId, kurikulumId }) {
                 </table>
             ) : (
                 <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
-                    Tidak ada data PL tersedia.
+                    Tidak ada data <strong>PL</strong> tersedia.
                 </Alert>
                 // <p className="text-center text-gray-500">Tidak ada data PL tersedia.</p>
             )}

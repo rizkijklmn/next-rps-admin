@@ -87,7 +87,7 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                                         Lihat detail
                                     </Link> */}
                                     <span
-                                        onClick={() => window.open(`/cp-lulusan/${cpl.ID}`, '_blank', 'noopener,noreferrer')}
+                                        onClick={() => window.open(`/cpl/detailcpl/${cpl.ID}`, '_blank', 'noopener,noreferrer')}
                                         className="cursor-pointer text-blue-700 hover:text-blue-500 underline"
                                     >
                                         Relasi ke PL
@@ -116,7 +116,7 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                 </table>
             ) : (
                 <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
-                    Tidak ada data CPL tersedia.
+                    Tidak ada data <strong>CPL</strong> tersedia.
                 </Alert>
             )}
 

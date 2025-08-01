@@ -287,22 +287,22 @@ export default function DetailCplPage() {
                                 <table className="table-auto w-full min-w-24 text-sm  text-gray-600 dark:text-white">
                                     <thead className="text-base text-black bg-gray-200 border-y-1 border-y-gray-200 dark:text-white dark:bg-gray-700 dark:border-gray-700">
                                         <tr className="text-center">
-                                            <th className="px-6 py-3">Pilih</th>
-                                            <th className="px-6 py-3">Kode</th>
+                                            <th className="px-6 py-3 w-[100px]">Pilih</th>
+                                            <th className="px-6 py-3 w-[100px]">Kode</th>
                                             <th className="px-6 py-3">Deskripsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {plList.map((pl) => (
                                             <tr key={pl.ID} className="border-y-1 border-gray-200 dark:border-gray-700">
-                                                <td className="text-center items-center justify-center px-6 py-3">
+                                                <td className="text-center items-center justify-center px-6 py-3 w-[100px]">
                                                     <Checkbox
                                                         id={`pl-${pl.ID}`}
                                                         checked={selectedPLs.includes(pl.ID)}
                                                         onChange={() => handleCheckboxChange(pl.ID)}
                                                     />
                                                 </td>
-                                                <td className="text-center">
+                                                <td className="text-center w-[100px]">
                                                     <Label htmlFor={`pl-${pl.ID}`}>{pl.Kode}</Label>
                                                 </td>
                                                 <td className="items-center justify-center px-6 py-3">

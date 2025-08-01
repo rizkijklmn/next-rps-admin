@@ -24,7 +24,7 @@ const getCplByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     // });
 
     if (!response.ok) {
-        throw new Error('Gagal mengambil data CPL');
+        throw new Error('Gagal mengambil data CPL by Prodi dan Kurikulum');
     }
 
     return await response.json();

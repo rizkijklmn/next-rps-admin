@@ -3,7 +3,16 @@ import withFlowbiteReact from "flowbite-react/plugin/nextjs";
 /** @type {import('next').NextConfig} */
 
 // KODE ASLI
-const nextConfig = {};
+const nextConfig = {
+    async rewrites() {
+        return [
+            {
+                source: '/api/fetch-matkul',
+                destination: 'http://192.168.54.59:3002/dbuai/matakuliah/prodi/kurikulum'
+            }
+        ]
+    }
+};
 
 // KODE DENGAN PROXY UNTUK BYPASS CORS
 // const nextConfig = {

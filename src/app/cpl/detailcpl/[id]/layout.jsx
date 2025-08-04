@@ -1,5 +1,3 @@
-import { getCplById } from '@/utils/fetchCpl';
-
 // export async function generateMetadata({ params }) {
 //     const cpl = await getCplById(params.id);
 

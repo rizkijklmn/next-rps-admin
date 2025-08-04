@@ -7,8 +7,12 @@ const nextConfig = {
     async rewrites() {
         return [
             {
-                source: '/api/fetch-matkul',
+                source: '/api/fetch-matkul-by-prodi-and-kurikulum',
                 destination: 'http://192.168.54.59:3002/dbuai/matakuliah/prodi/kurikulum'
+            },
+            {
+                source: '/api/fetch-matkul-by-id/:id',
+                destination: 'http://192.168.54.59:3002/dbuai/matakuliah/:id'
             }
         ]
     }

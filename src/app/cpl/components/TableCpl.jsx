@@ -71,10 +71,10 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                 <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
                     <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
                         <tr className="text-base">
-                            <th className="px-5 py-3">Kode</th>
+                            <th className="px-5 py-3 w-[120px]">Kode</th>
                             <th className="px-5 py-3">Deskripsi</th>
-                            <th className="px-5 py-3">Detail</th>
-                            <th className="px-5 py-3">Ubah/Hapus</th>
+                            <th className="px-5 py-3 w-[120px]">Detail</th>
+                            <th className="px-5 py-3 w-[100px]">Ubah/Hapus</th>
                         </tr>
                     </thead>
                     <tbody className="text-sm">

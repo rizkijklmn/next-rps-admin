@@ -1,6 +1,7 @@
 // app/cpmk/page.jsx
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
+import MatakuliahPengembangClientSide from "./client";
 import MKPengembangRPSClientSide from "./client";
 
 export const metadata = {
@@ -8,7 +9,7 @@ export const metadata = {
   description: "Welcome to cpl pengembang rps",
 };
 
-export default async function MKPengembangRPS() {
+export default async function MatakuliahPengembang() {
   return (
     <>
       <div className="flex h-screen">
@@ -32,7 +33,7 @@ export default async function MKPengembangRPS() {
           {/* Konten scrollable */}
           <main className="mt-16 p-4 overflow-y-auto h-[calc(100vh-4rem)]">
             {/* Konten panjang di sini */}
-            <MKPengembangRPSClientSide />
+            <MatakuliahPengembangClientSide />
           </main>
         </div>
         

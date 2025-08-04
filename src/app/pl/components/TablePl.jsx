@@ -40,9 +40,9 @@ export default function TablePl({ prodiId, kurikulumId }) {
                 <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
                     <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
                         <tr className="text-base">
-                            <th className="px-5 py-3 w-15">Kode PL</th>
-                            <th className="px-5 py-3 w-[500px]">Deskripsi PL</th>
-                            <th className="px-5 py-3 w-40">Ubah/Hapus</th>
+                            <th className="px-5 py-3 w-32">Kode</th>
+                            <th className="px-5 py-3">Deskripsi</th>
+                            <th className="px-5 py-3 w-32">Ubah/Hapus</th>
                         </tr>
                     </thead>
                     <tbody className="text-sm">

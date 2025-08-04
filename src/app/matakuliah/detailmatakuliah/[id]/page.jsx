@@ -182,22 +182,22 @@ export default function DetailMatkulPage() {
                                 <table className="table-auto w-full min-w-24 text-sm  text-gray-600 dark:text-white">
                                     <thead className="text-base text-black bg-gray-200 border-y-1 border-y-gray-200 dark:text-white dark:bg-gray-700 dark:border-gray-700">
                                         <tr className="text-center">
-                                            <th className="px-6 py-3 w-[100px]">Pilih</th>
-                                            <th className="px-6 py-3 w-[100px]">Kode</th>
+                                            <th className="px-6 py-3 w-32">Pilih</th>
+                                            <th className="px-6 py-3 w-32">Kode</th>
                                             <th className="px-6 py-3">Deskripsi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {cplList.map((cpl) => (
                                             <tr key={cpl.ID} className="border-y-1 border-gray-200 dark:border-gray-700">
-                                                <td className="text-center items-center justify-center px-6 py-3 w-[100px]">
+                                                <td className="text-center items-center justify-center px-6 py-3">
                                                     <Checkbox
                                                         id={`cpl-${cpl.ID}`}
                                                     // checked={selectedCPLs.includes(cpl.ID)}
                                                     // onChange={() => handleCheckboxChange(cpl.ID)}
                                                     />
                                                 </td>
-                                                <td className="text-center w-[100px]">
+                                                <td className="text-center">
                                                     <Label htmlFor={`cpl-${cpl.ID}`}>{cpl.KodeCpl}</Label>
                                                 </td>
                                                 <td className="items-center justify-center px-6 py-3">

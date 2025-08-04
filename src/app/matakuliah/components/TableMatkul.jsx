@@ -28,7 +28,7 @@ export default function TableMatkul({ prodiId, kurikulumId }) {
         <div className="space-y-4">
             {/* Input Search */}
             <TextInput
-                className="w-[20%]"
+                className="w-80"
                 icon={HiSearch}
                 placeholder="Cari nama mata kuliah..."
                 value={searchTerm}
@@ -39,18 +39,18 @@ export default function TableMatkul({ prodiId, kurikulumId }) {
                 <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
                     <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
                         <tr className="text-base">
-                            <th className="px-5 py-3 w-[100px]">Kode</th>
-                            <th className="px-5 py-3 w-[300px]">Mata Kuliah</th>
-                            <th className="px-5 py-3 w-[100px]">Semester</th>
-                            <th className="px-5 py-3 w-[80px]">sks</th>
+                            <th className="px-5 py-3 w-32">Kode</th>
+                            <th className="px-5 py-3">Mata Kuliah</th>
+                            <th className="px-5 py-3 w-32">Semester</th>
+                            <th className="px-5 py-3 w-32">sks</th>
                             {/* <th className="px-5 py-3 w-[150px]">Detail</th> */}
                         </tr>
                     </thead>
                     <tbody className="text-sm">
                         {filteredData.map((matkul, index) => (
                             <tr className="border border-gray-200 dark:border-gray-600" key={index}>
-                                <td className="px-5 py-3 text-center w-[100px]">{matkul.ID}</td>
-                                <td className="px-5 py-3 w-[300px]">
+                                <td className="px-5 py-3 text-center">{matkul.ID}</td>
+                                <td className="px-5 py-3">
                                     <span
                                         className="cursor-pointer text-blue-700 hover:text-blue-500 underline"
                                         onClick={() => window.open(`/matakuliah/detailmatakuliah/${matkul.ID}`, '_blank', 'noopener,noreferrer')}
@@ -58,8 +58,8 @@ export default function TableMatkul({ prodiId, kurikulumId }) {
                                         {matkul.Nama}
                                     </span>
                                 </td>
-                                <td className="px-5 py-3 text-center w-[100px]">{matkul.Semester}</td>
-                                <td className="px-5 py-3 text-center w-[80px]">{matkul.Sks}</td>
+                                <td className="px-5 py-3 text-center">{matkul.Semester}</td>
+                                <td className="px-5 py-3 text-center">{matkul.Sks}</td>
                                 {/* <td className="px-5 py-3 text-center w-[150px]">
                                     <span
                                         onClick={() => window.open(`/cp-lulusan/${cpl.ID}`, '_blank', 'noopener,noreferrer')}

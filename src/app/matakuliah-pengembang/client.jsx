@@ -7,7 +7,7 @@ import { listCPL } from "../components/Data"
 import { IoPencil } from "react-icons/io5"
 import { ButtonCustom } from "../components/Button"
 
-export default function MKPengembangRPSClientSide() {
+export default function MatakuliahPengembangClientSide() {
     return (
         <div className="mx-10 my-3">
             {/* <div className="font-bold text-3xl pb-5">

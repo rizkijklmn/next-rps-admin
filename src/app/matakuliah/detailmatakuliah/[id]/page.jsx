@@ -12,8 +12,8 @@ export default function DetailMatkulPage() {
     const { id } = useParams(); // mengambil id dari URL
     const [matkul, setMatkul] = useState(null); // detail Matkul
     const [cplList, setCplList] = useState([]); // daftar CPL yg tersedia
-    // const [selectedCPLs, setSelectedCPLs] = useState([]); // CPL yg dipilih (checkbox)
-    // const [initialCPLs, setInitialCPLs] = useState([]); // CPL yg awalnya sudah berelasi
+    const [selectedCPLs, setSelectedCPLs] = useState([]); // CPL yg dipilih (checkbox)
+    const [initialCPLs, setInitialCPLs] = useState([]); // CPL yg awalnya sudah berelasi
 
     // Saat komponen dimuat, data CPL diambil berdasarkan id dari URL.
     // Jika matkul memiliki relasi CPL, maka ID-nya disimpan ke selectedCPLs dan initialCPLs.
@@ -25,11 +25,11 @@ export default function DetailMatkulPage() {
                 setMatkul(matkulDetail); // Simpan ke state
 
                 // Simpan relasi awal PL yang berelasi dengan CPL
-                // if (matkulDetail.Cpl && matkulDetail.Cpl.length > 0) {
-                //     const relatedCplIds = matkulDetail.Cpl.map((cpl) => cpl.ID);
-                //     setSelectedCPLs(relatedCplIds);
-                //     setInitialCPLs(relatedCplIds); // Simpan relasi awal
-                // }
+                if (matkulDetail.Cpl && matkulDetail.Cpl.length > 0) {
+                    const relatedCplIds = matkulDetail.Cpl.map((cpl) => cpl.ID);
+                    setSelectedCPLs(relatedCplIds);
+                    setInitialCPLs(relatedCplIds); // Simpan relasi awal
+                }
 
                 // Ambil data CPL berdasarkan ProdiId dan KurikulumId
                 const { ProdiId, KurikulumId } = matkulDetail;
@@ -45,86 +45,88 @@ export default function DetailMatkulPage() {
         fetchData();
     }, [id]);
 
-    //     const handleCheckboxChange = async (cplId) => {
-    //         setSelectedCPLs((prev) =>
-    //             prev.includes(cplId) ? prev.filter((id) => id !== cplId) : [...prev, cplId]
-    //         );
-    //     };
+    const handleCheckboxChange = async (cplId) => {
+        setSelectedCPLs((prev) =>
+            prev.includes(cplId)
+                ? prev.filter((id) => id !== cplId)
+                : [...prev, cplId]
+        );
+    };
 
-    //     const handleSave = async () => {
-    //         const added = selectedCPLs.filter((id) => !initialCPLs.includes(id));
-    //         const removed = initialCPLs.filter((id) => !selectedCPLs.includes(id));
+    const handleSave = async () => {
+        const added = selectedCPLs.filter((id) => !initialCPLs.includes(id));
+        const removed = initialCPLs.filter((id) => !selectedCPLs.includes(id));
 
-    //         // Kirim relasi CPL ↔ PL ke backend
-    //         if (added.length > 0 || removed.length > 0) {
-    //             try {
-    //                 // Tambah relasi baru
-    //                 for (const cplId of added) {
-    //                     const response = await fetch(`${API_BASE_OBE}/api_obe/pl/cpl`, {
-    //                         method: 'POST',
-    //                         headers: {
-    //                             'Content-Type': 'application/json',
-    //                         },
-    //                         body: JSON.stringify({
-    //                             CplId: cplId,
-    //                             // CplId: parseInt(id), // pastikan id CPL berupa angka
-    //                             MatkulId: id,
-    //                         }),
-    //                     });
+        // Kirim relasi CPL ↔ PL ke backend
+        if (added.length > 0 || removed.length > 0) {
+            try {
+                // Tambah relasi baru
+                for (const cplId of added) {
+                    const response = await fetch('/api/relasi-matkul-cpl/add', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            KodeKomponen: matkul.ID,
+                            // CplId: parseInt(id), // pastikan id CPL berupa angka
+                            CplId: cplId,
+                        }),
+                    });
 
-    //                     if (!response.ok) {
-    //                         throw new Error(`Gagal menambahkan relasi untuk CPL ID ${cplId}`);
-    //                     }
-    //                 }
-    //                 // Hapus relasi yang di-uncheck
-    //                 for (const cplId of removed) {
-    //                     const response = await fetch(`${API_BASE_OBE}/api_obe/pl/cpl`, {
-    //                         method: 'DELETE',
-    //                         headers: {
-    //                             'Content-Type': 'application/json',
-    //                         },
-    //                         body: JSON.stringify({
-    //                             CplId: cplId,
-    //                             // CplId: parseInt(id), // pastikan id CPL berupa angka
-    //                             MatkulId: id,
-    //                         }),
-    //                     });
+                    if (!response.ok) {
+                        throw new Error(`Gagal menambahkan relasi untuk CPL ID ${cplId}`);
+                    }
+                }
+                // Hapus relasi yang di-uncheck
+                for (const cplId of removed) {
+                    const response = await fetch('/api/relasi-matkul-cpl/delete', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            KodeKomponen: matkul.ID,
+                            // CplId: parseInt(id), // pastikan id CPL berupa angka
+                            CplId: cplId,
+                        }),
+                    });
 
-    //                     if (!response.ok) {
-    //                         throw new Error(`Gagal menghapus relasi untuk CPL ID ${cplId}`);
-    //                     }
-    //                 }
+                    if (!response.ok) {
+                        throw new Error(`Gagal menghapus relasi untuk CPL ID ${cplId}`);
+                    }
+                }
 
-    //                 Swal.fire({
-    //                     icon: 'success',
-    //                     title: 'Berhasil!',
-    //                     text: 'Relasi berhasil disimpan!',
-    //                     showConfirmButton: true
-    //                 }).then(() => {
-    //                     window.close(); // tutup tab setelah alert ditutup
-    //                 });
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Berhasil!',
+                    text: 'Relasi berhasil disimpan!',
+                    showConfirmButton: true
+                }).then(() => {
+                    window.close(); // tutup tab setelah alert ditutup
+                });
 
-    //                 setInitialCPLs([...selectedCPLs]); // Update relasi awal
-    //             } catch (error) {
-    //                 console.error('Error saat menyimpan relasi:', error);
-    //                 Swal.fire({
-    //                     icon: 'warning',
-    //                     title: 'Oops!',
-    //                     text: 'Terjadi kesalahan saat menyimpan relasi!',
-    //                 })
-    //             }
-    //         } else {
-    //             Swal.fire({
-    //                 icon: 'info',
-    //                 title: 'Tidak ada perubahan!',
-    //                 text: 'Tidak ada relasi CPL-PL yang berubah.',
-    //                 showConfirmButton: true
-    //             }).then(() => {
-    //                 window.close(); // tutup tab setelah alert ditutup
-    //             });
-    //         }
-    //         console.log("Simpan relasi:", { MatkulId: id, cplIds: selectedCPLs });
-    //     };
+                setInitialCPLs([...selectedCPLs]); // Update relasi awal
+            } catch (error) {
+                console.error('Error saat menyimpan relasi:', error);
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops!',
+                    text: 'Terjadi kesalahan saat menyimpan relasi!',
+                })
+            }
+        } else {
+            Swal.fire({
+                icon: 'info',
+                title: 'Tidak ada perubahan!',
+                text: 'Tidak ada relasi CPL-PL yang berubah.',
+                showConfirmButton: true
+            }).then(() => {
+                window.close(); // tutup tab setelah alert ditutup
+            });
+        }
+        console.log("Simpan relasi:", { MatkulId: id, cplIds: selectedCPLs });
+    };
 
     if (!matkul) {
         return (
@@ -193,8 +195,8 @@ export default function DetailMatkulPage() {
                                                 <td className="text-center items-center justify-center px-6 py-3">
                                                     <Checkbox
                                                         id={`cpl-${cpl.ID}`}
-                                                    // checked={selectedCPLs.includes(cpl.ID)}
-                                                    // onChange={() => handleCheckboxChange(cpl.ID)}
+                                                        checked={selectedCPLs.includes(cpl.ID)}
+                                                        onChange={() => handleCheckboxChange(cpl.ID)}
                                                     />
                                                 </td>
                                                 <td className="text-center">
@@ -216,7 +218,7 @@ export default function DetailMatkulPage() {
                     </div>
                 </Card>
                 <Card>
-                    <Button className="cursor-pointer" color="blue" /*onClick={handleSave}*/>
+                    <Button className="cursor-pointer" color="blue" onClick={handleSave}>
                         Simpan Relasi
                     </Button>
                 </Card>

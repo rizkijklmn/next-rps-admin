@@ -1,6 +1,4 @@
 // src/utils/fetchCpl.js
-import { API_BASE_OBE } from "./config";
-
 const getCplByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({
         ProdiId: prodiId,
@@ -8,7 +6,7 @@ const getCplByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     });
 
     // KODE ASLI
-    const response = await fetch(`${API_BASE_OBE}/api_obe/cpl/prodi/kurikulum?${params.toString()}`, {
+    const response = await fetch(`/api/get-cpl?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -31,7 +29,7 @@ const getCplByProdiAndKurikulum = async (prodiId, kurikulumId) => {
 };
 
 const getCplById = async (id) => {
-    const response = await fetch(`${API_BASE_OBE}/api_obe/cpl/${id}`, {
+    const response = await fetch(`/api/get-cpl-by-id/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

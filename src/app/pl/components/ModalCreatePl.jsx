@@ -1,6 +1,5 @@
 'use client';
 
-import { API_BASE_OBE } from '@/utils/config';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { HiPlus } from 'react-icons/hi';
@@ -20,7 +19,7 @@ const ModalCreatePl = ({ kurikulumId, prodiId, onSuccess }) => {
         };
 
         try {
-            const response = await fetch(`${API_BASE_OBE}/api_obe/pl`, {
+            const response = await fetch(`/api/post-pl`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -7,7 +7,6 @@ import { getPlByProdiAndKurikulum } from '@/utils/fetchPl';
 import { getCplById } from '@/utils/fetchCpl';
 import { HiInformationCircle } from 'react-icons/hi';
 import { Checkbox, Button, Card, Label, Alert, Spinner } from 'flowbite-react';
-import { API_BASE_OBE } from '@/utils/config';
 
 export default function DetailCplPage() {
     const { id } = useParams(); // mengambil id dari URL
@@ -107,7 +106,7 @@ export default function DetailCplPage() {
             try {
                 // Tambah relasi baru
                 for (const plId of added) {
-                    const response = await fetch(`${API_BASE_OBE}/api_obe/pl/cpl`, {
+                    const response = await fetch(`/api/relasi-cpl-pl/add`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -124,7 +123,7 @@ export default function DetailCplPage() {
                 }
                 // Hapus relasi yang di-uncheck
                 for (const plId of removed) {
-                    const response = await fetch(`${API_BASE_OBE}/api_obe/pl/cpl`, {
+                    const response = await fetch(`/api/relasi-cpl-pl/delete`, {
                         method: 'DELETE',
                         headers: {
                             'Content-Type': 'application/json',

@@ -49,7 +49,7 @@ export default function TableMatkul({ prodiId, kurikulumId }) {
                     <tbody className="text-sm">
                         {filteredData.map((matkul, index) => (
                             <tr className="border border-gray-200 dark:border-gray-600" key={index}>
-                                <td className="px-5 py-3 text-center">{matkul.ID}</td>
+                                <td className="px-5 py-3 text-left">{matkul.ID}</td>
                                 <td className="px-5 py-3">
                                     <span
                                         className="cursor-pointer text-blue-700 hover:text-blue-500 hover:font-bold hover:underline"

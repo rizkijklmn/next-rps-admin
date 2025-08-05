@@ -1,17 +1,7 @@
-import { API_BASE_OBE } from "@/utils/config";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import {
-    Button,
-    Label,
-    Modal,
-    ModalBody,
-    ModalFooter,
-    ModalHeader,
-    Textarea,
-    TextInput
-} from "flowbite-react";
+import { Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";
 
 export default function ModalEditPl({ isOpen, onClose, plData, onUpdated }) {
     // const [kode, setKode] = useState("");
@@ -55,13 +45,13 @@ export default function ModalEditPl({ isOpen, onClose, plData, onUpdated }) {
         }
 
         try {
-            const resKode = await fetch(`${API_BASE_OBE}/api_obe/pl/kode/${plData.ID}`, {
+            const resKode = await fetch(`/api/put-pl-kode/${plData.ID}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json', },
                 body: JSON.stringify({ Kode: formData.Kode }),
             });
 
-            const resDeskripsi = await fetch(`${API_BASE_OBE}/api_obe/pl/deskripsi/${plData.ID}`, {
+            const resDeskripsi = await fetch(`/api/put-pl-deskripsi/${plData.ID}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json', },
                 body: JSON.stringify({ Deskripsi: formData.Deskripsi }),

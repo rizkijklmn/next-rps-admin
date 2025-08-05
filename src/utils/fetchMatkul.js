@@ -1,6 +1,4 @@
 // src/utils/fetchMatkul.js
-import { API_BASE_DBUAI } from "./config";
-
 const getMatkulByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     const params = new URLSearchParams({
         ProdiId: prodiId,
@@ -8,7 +6,7 @@ const getMatkulByProdiAndKurikulum = async (prodiId, kurikulumId) => {
     });
 
     // const response = await fetch(`${API_BASE_DBUAI}/dbuai/matakuliah/prodi/kurikulum?${params.toString()}`, { // KODE ASLI, sementara pakai proxy dulu
-    const response = await fetch(`/api/fetch-matkul-by-prodi-and-kurikulum?${params.toString()}`, {
+    const response = await fetch(`/api/get-matkul-by-prodi-kurikulum?${params.toString()}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -24,7 +22,7 @@ const getMatkulByProdiAndKurikulum = async (prodiId, kurikulumId) => {
 
 const getMatkulById = async (id) => {
     // const response = await fetch(`${API_BASE_DBUAI}/dbuai/matakuliah/${id}`, { // KODE ASLI, sementara pakei proxy dulu
-    const response = await fetch(`/api/fetch-matkul-by-id/${id}`, {
+    const response = await fetch(`/api/get-matkul-by-id/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -37,4 +35,4 @@ const getMatkulById = async (id) => {
     return await response.json();
 }
 
-export { getMatkulByProdiAndKurikulum, getMatkulById };    
+export { getMatkulByProdiAndKurikulum, getMatkulById };

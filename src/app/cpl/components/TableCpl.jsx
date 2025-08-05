@@ -1,4 +1,3 @@
-import Swal from "sweetalert2";
 import { IoPencil, IoTrash } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { Alert, Button, Label, Modal, ModalBody, ModalFooter, ModalHeader, Textarea, TextInput } from "flowbite-react";

@@ -52,7 +52,7 @@ export default function TableMatkul({ prodiId, kurikulumId }) {
                                 <td className="px-5 py-3 text-center">{matkul.ID}</td>
                                 <td className="px-5 py-3">
                                     <span
-                                        className="cursor-pointer text-blue-700 hover:text-blue-500 underline"
+                                        className="cursor-pointer text-blue-700 hover:text-blue-500 hover:font-bold hover:underline"
                                         onClick={() => window.open(`/matakuliah/detailmatakuliah/${matkul.ID}`, '_blank', 'noopener,noreferrer')}
                                     >
                                         {matkul.Nama}

@@ -240,9 +240,8 @@ export default function DetailCplPage() {
                             <p>{cpl.DeskripsiCpl}</p>
                         </div>
                     )} */}
-
+                    <h1 className="text-2xl font-bold">{cpl.KodeCpl}</h1>
                     <div className="space-y-5">
-                        <h1 className="text-2xl font-bold">{cpl.KodeCpl}</h1>
                         <div className="text-black bg-gray-100 dark:text-white dark:bg-gray-700 shadow p-4 rounded">
                             <p><strong>Deskripsi:</strong> {cpl.DeskripsiCpl}</p>
                             <p><strong>Kurikulum:</strong> {cpl.Kurikulum?.TahunKurikulum}</p>

@@ -87,8 +87,8 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                                         Lihat detail
                                     </Link> */}
                                     <span
+                                        className="cursor-pointer text-blue-700 hover:text-blue-500 hover:font-bold hover:underline"
                                         onClick={() => window.open(`/cpl/detailcpl/${cpl.ID}`, '_blank', 'noopener,noreferrer')}
-                                        className="cursor-pointer text-blue-700 hover:text-blue-500 underline"
                                     >
                                         Relasi ke PL
                                     </span>

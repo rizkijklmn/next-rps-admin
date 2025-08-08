@@ -7,7 +7,7 @@ import { HiInformationCircle } from 'react-icons/hi';
 import { Checkbox, Button, Card, Label, Alert, Spinner } from 'flowbite-react';
 import { getMatkulById } from '@/utils/fetchMatkul';
 import { getCplByProdiAndKurikulum } from '@/utils/fetchCpl';
-import { getRelasiCplMatkul } from '@/utils/fetchRelasiCplMatkul';
+import { getRelasiMatkulCpl } from '@/utils/fetchRelasiMatkulCpl';
 
 export default function DetailMatkulPage() {
     const { id } = useParams(); // mengambil id dari URL
@@ -27,7 +27,7 @@ export default function DetailMatkulPage() {
                 setMatkul(matkulDetail); // Simpan ke state
 
                 // Simpan relasi awal CPL yang berelasi dengan Matkul
-                const relasiCplData = await getRelasiCplMatkul(matkulDetail.ID);
+                const relasiCplData = await getRelasiMatkulCpl(matkulDetail.ID);
                 setRelasiCpl(relasiCplData);
                 const relatedCplIds = relasiCplData.map((item) => item.ID);
                 setSelectedCPLs(relatedCplIds);

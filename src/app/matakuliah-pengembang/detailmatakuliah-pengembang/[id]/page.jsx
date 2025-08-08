@@ -6,7 +6,7 @@ import { HiCheck, HiClipboardCheck, HiInformationCircle, HiPlus } from 'react-ic
 import { Checkbox, Button, Card, Label, Alert, Spinner, Tabs, TabItem, TextInput, Textarea, Dropdown, DropdownItem } from 'flowbite-react';
 import { getMatkulById } from '@/utils/fetchMatkul';
 import { getCplByProdiAndKurikulum } from '@/utils/fetchCpl';
-import { getRelasiCplMatkul } from '@/utils/fetchRelasiCplMatkul';
+import { getRelasiMatkulCpl } from '@/utils/fetchRelasiMatkulCpl';
 import { IoPencil } from 'react-icons/io5';
 import ModalCreateCpmk from '../../components/ModalCreateCpmk';
 import ModalEditCpmk from '../../components/ModalEditCpmk';
@@ -34,7 +34,7 @@ export default function DetailMatkulPengembangPage() {
                 setMatkul(matkulDetail); // Simpan ke state
 
                 // Simpan relasi awal CPL yang berelasi dengan Matkul
-                const relasiCplData = await getRelasiCplMatkul(matkulDetail.ID);
+                const relasiCplData = await getRelasiMatkulCpl(matkulDetail.ID);
                 setRelasiCpl(relasiCplData);
                 // const relatedCplIds = relasiCplData.map((item) => item.ID);
                 // setSelectedCPLs(relatedCplIds);

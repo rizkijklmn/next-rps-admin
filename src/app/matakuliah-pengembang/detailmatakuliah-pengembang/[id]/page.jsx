@@ -3,7 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { HiCheck, HiClipboardCheck, HiInformationCircle, HiPlus } from 'react-icons/hi';
-import { Checkbox, Button, Card, Label, Alert, Spinner, Tabs, TabItem, TextInput, Textarea, Dropdown } from 'flowbite-react';
+import { Checkbox, Button, Card, Label, Alert, Spinner, Tabs, TabItem, TextInput, Textarea, Dropdown, DropdownItem } from 'flowbite-react';
 import { getMatkulById } from '@/utils/fetchMatkul';
 import { getCplByProdiAndKurikulum } from '@/utils/fetchCpl';
 import { getRelasiCplMatkul } from '@/utils/fetchRelasiCplMatkul';
@@ -152,7 +152,7 @@ export default function DetailMatkulPengembangPage() {
                     </Card>
                     <Card>
                         <Tabs>
-                            <TabItem active={{ className: "bg-gray-200" }} title="Capaian Pembelajaran Lulusan" icon={HiCheck}>
+                            <TabItem active={{ className: "bg-gray-200" }} title="Capaian Pembelajaran Lulusan (CPL)" icon={HiCheck}>
                                 <div>
                                     <p className="text-base font-bold tracking-normal text-gray-900 dark:text-white mb-4">
                                         Relasi Mata Kuliah dengan CPL
@@ -173,6 +173,7 @@ export default function DetailMatkulPengembangPage() {
                                                             <td className="text-center items-center justify-center px-6 py-3">
                                                                 <Checkbox
                                                                     disabled
+                                                                    className="cursor-not-allowed"
                                                                     id={`cpl-${cpl.ID}`}
                                                                     checked={relasiCpl.some((relasi) => relasi.ID === cpl.ID)}
                                                                 // onChange={() => handleCheckboxChange(cpl.ID)}
@@ -199,13 +200,13 @@ export default function DetailMatkulPengembangPage() {
                                     )}
                                 </div>
                             </TabItem>
-                            <TabItem active={{ className: "bg-gray-200" }} title="Capaian Pembelajaran Mata Kuliah" icon={HiClipboardCheck}>
+                            <TabItem active={{ className: "bg-gray-200" }} title="Capaian Pembelajaran Mata Kuliah (CPMK)" icon={HiClipboardCheck}>
                                 <p className="text-base font-bold tracking-normal text-gray-900 dark:text-white mb-4">
                                     Capaian Pembelajaran Mata Kuliah
                                 </p>
                                 {relasiCpl.length > 0 ? (
                                     <div>
-                                        <select
+                                        {/* <select
                                             className="w-1/2 p-2 border mb-4"
                                             value={selectedCplId || ''}
                                             onChange={(e) => {
@@ -226,13 +227,46 @@ export default function DetailMatkulPengembangPage() {
                                                     {cpl.KodeCpl}
                                                 </option>
                                             ))}
-                                        </select>
+                                        </select> */}
+
+                                        <Dropdown
+                                            label={selectedCplId ? relasiCpl.find((cpl) => cpl.ID === selectedCplId)?.KodeCpl : "Pilih CPL"}
+                                            dismissOnClick={true}
+                                            className="mb-4 w-48 justify-between cursor-pointer"
+                                            color={"light"}
+                                        >
+                                            {relasiCpl.map((cpl) => (
+                                                <DropdownItem
+                                                    key={cpl.ID}
+                                                    onClick={() => {
+                                                        setSelectedCplId(cpl.ID);
+                                                        fetchCpmkByMatkulAndCpl(matkul.ID, cpl.ID);
+                                                    }}
+                                                >
+                                                    {cpl.KodeCpl}
+                                                </DropdownItem>
+                                            ))}
+                                        </Dropdown>
+
 
                                         {/* Alert jika belum pilih CPL */}
                                         {selectedCplId === null && (
                                             <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
                                                 Silakan pilih CPL terlebih dahulu.
                                             </Alert>
+                                        )}
+
+                                        {/* Menampilkan Deskripsi dari CPL dipilih */}
+                                        {selectedCplId !== null && (
+                                            <div className="mb-4">
+                                                <p className="text-gray-700 dark:text-gray-300">
+                                                    {/* <span className="font-semibold text-align-justify">Deskripsi:</span>{" "} */}
+                                                    {
+                                                        relasiCpl.find((cpl) => cpl.ID === selectedCplId)?.DeskripsiCpl
+                                                        || "Deskripsi tidak ditemukan"
+                                                    }
+                                                </p>
+                                            </div>
                                         )}
 
                                         {/* Tombol Tambah CPMK */}
@@ -248,6 +282,7 @@ export default function DetailMatkulPengembangPage() {
                                         {/* Tabel CPMK atau alert jika kosong */}
                                         {selectedCplId !== null && selectedCpmkList.length > 0 ? (
                                             <div>
+
                                                 <table className="table-auto w-full border border-gray-200 dark:border-gray-600">
                                                     <thead className="text-black dark:text-white bg-gray-200 dark:bg-gray-600">
                                                         <tr className="text-base">
@@ -289,6 +324,11 @@ export default function DetailMatkulPengembangPage() {
                                         Belum ada relasi <strong>Mata Kuliah</strong> dengan <strong>CPL</strong>.
                                     </Alert>
                                 )}
+                            </TabItem>
+                            <TabItem active={{ className: "bg-gray-200" }} title="Sub Capaian Pembelajaran Mata Kuliah (Sub-CPMK)" icon={HiCheck}>
+                                <p className="text-base font-bold tracking-normal text-gray-900 dark:text-white mb-4">
+                                    Sub Capaian Pembelajaran Mata Kuliah &#40;Sub-CPMK&#41;
+                                </p>
                             </TabItem>
                         </Tabs>
                     </Card>

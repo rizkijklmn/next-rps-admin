@@ -33,7 +33,7 @@ const DropdownKurikulum = ({ onSelect }) => {
             <Dropdown
                 size="md"
                 color={"light"}
-                className="w-75 justify-between"
+                className="w-75 justify-between cursor-pointer"
                 label={stateKurikulum}
                 onChange={handleChange}
             >

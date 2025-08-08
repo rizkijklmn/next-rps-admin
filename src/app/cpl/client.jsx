@@ -88,7 +88,7 @@ export default function CPLClientSide() {
                         </>
                     ) : (
                         <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
-                            Silakan pilih kurikulum terlebih dahulu
+                            Silakan pilih <strong>kurikulum</strong> terlebih dahulu.
                         </Alert>
                     )}
                 </Card>

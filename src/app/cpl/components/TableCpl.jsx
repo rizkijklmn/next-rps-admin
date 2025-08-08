@@ -115,7 +115,7 @@ export default function TableCpl({ prodiId, kurikulumId }) {
                 </table>
             ) : (
                 <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
-                    Tidak ada data <strong>CPL</strong> tersedia.
+                    Tidak tersedia data <strong>CPL</strong>.
                 </Alert>
             )}
 

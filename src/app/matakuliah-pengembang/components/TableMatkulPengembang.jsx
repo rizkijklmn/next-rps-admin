@@ -3,7 +3,7 @@ import { Alert, TextInput } from "flowbite-react";
 import { HiInformationCircle, HiSearch } from "react-icons/hi";
 import { getMatkulByProdiAndKurikulum } from "@/utils/fetchMatkul";
 
-export default function TableMatkul({ prodiId, kurikulumId }) {
+export default function TableMatkulPengembang({ prodiId, kurikulumId }) {
     const [data, setData] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
 
@@ -53,7 +53,7 @@ export default function TableMatkul({ prodiId, kurikulumId }) {
                                 <td className="px-5 py-3">
                                     <span
                                         className="cursor-pointer text-blue-700 hover:text-blue-500 hover:font-bold hover:underline"
-                                        onClick={() => window.open(`/matakuliah/detailmatakuliah/${matkul.ID}`, '_blank', 'noopener,noreferrer')}
+                                        onClick={() => window.open(`/matakuliah-pengembang/detailmatakuliah-pengembang/${matkul.ID}`, '_blank', 'noopener,noreferrer')}
                                     >
                                         {matkul.Nama}
                                     </span>
@@ -74,7 +74,7 @@ export default function TableMatkul({ prodiId, kurikulumId }) {
                 </table>
             ) : (
                 <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
-                    Tidak tersedia data <strong>Mata Kuliah</strong>.
+                    Tidak ada data <strong>Mata Kuliah</strong> tersedia.
                 </Alert>
             )}
         </div>

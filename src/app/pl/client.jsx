@@ -11,7 +11,7 @@ import TablePl from "./components/TablePl";
 
 export default function PLClientSide() {
     const [kurikulumId, setKurikulumId] = useState(null);
-    const prodiId = 2; // Contoh ID Prodi sudah di set 2
+    const prodiId = 2; // ID Prodi sudah di set 2
 
     return (
         <div className="mx-10 my-3">
@@ -27,15 +27,12 @@ export default function PLClientSide() {
                     </div>
                 </Card>
             </div>
-
             <Card>
                 {kurikulumId ? (
-                    <>
-                        <TablePl prodiId={prodiId} kurikulumId={kurikulumId} />
-                    </>
+                    <TablePl prodiId={prodiId} kurikulumId={kurikulumId} />
                 ) : (
                     <Alert withBorderAccent className="items-center tracking-wide" icon={HiInformationCircle}>
-                        Silakan pilih kurikulum terlebih dahulu
+                        Silakan pilih <strong>kurikulum</strong> terlebih dahulu.
                     </Alert>
                 )}
             </Card>

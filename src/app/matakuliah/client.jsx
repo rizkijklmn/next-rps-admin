@@ -17,7 +17,7 @@ export default function MatakuliahClientSide() {
         <main>
             <div className="mx-10 my-3">
                 <p className="text-xl font-bold tracking-normal text-gray-900 dark:text-white">
-                    Halaman Daftar Mata Kuliah
+                    Halaman Daftar Mata Kuliah - Kaprodi
                 </p>
                 <form className="flex my-7 justify-center">
                     <Card className="flex items-center w-auto bg-gray-50">

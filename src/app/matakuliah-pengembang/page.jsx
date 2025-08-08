@@ -2,10 +2,9 @@
 import NavbarMenu from "../components/menu/Navbar";
 import SidebarMenu from "../components/menu/Sidebar";
 import MatakuliahPengembangClientSide from "./client";
-import MKPengembangRPSClientSide from "./client";
 
 export const metadata = {
-  title: "CPL Pengembang RPS",
+  title: "Daftar Mata Kuliah - Pengembang RPS",
   description: "Welcome to cpl pengembang rps",
 };
 

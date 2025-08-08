@@ -3,7 +3,9 @@ export async function DELETE(request) {
 
     const res = await fetch('http://192.168.54.59:3001/api_obe/cpl/matakuliah', {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(body),
     });
 

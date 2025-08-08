@@ -7,11 +7,13 @@ import { HiInformationCircle } from 'react-icons/hi';
 import { Checkbox, Button, Card, Label, Alert, Spinner } from 'flowbite-react';
 import { getMatkulById } from '@/utils/fetchMatkul';
 import { getCplByProdiAndKurikulum } from '@/utils/fetchCpl';
+import { getRelasiCplMatkul } from '@/utils/fetchRelasiCplMatkul';
 
 export default function DetailMatkulPage() {
     const { id } = useParams(); // mengambil id dari URL
     const [matkul, setMatkul] = useState(null); // detail Matkul
     const [cplList, setCplList] = useState([]); // daftar CPL yg tersedia
+    const [relasiCpl, setRelasiCpl] = useState([]);
     const [selectedCPLs, setSelectedCPLs] = useState([]); // CPL yg dipilih (checkbox)
     const [initialCPLs, setInitialCPLs] = useState([]); // CPL yg awalnya sudah berelasi
 
@@ -24,12 +26,18 @@ export default function DetailMatkulPage() {
                 const matkulDetail = await getMatkulById(id); // Ambil detail CPL berdasarkan ID
                 setMatkul(matkulDetail); // Simpan ke state
 
-                // Simpan relasi awal PL yang berelasi dengan CPL
-                if (matkulDetail.Cpl && matkulDetail.Cpl.length > 0) {
-                    const relatedCplIds = matkulDetail.Cpl.map((cpl) => cpl.ID);
-                    setSelectedCPLs(relatedCplIds);
-                    setInitialCPLs(relatedCplIds); // Simpan relasi awal
-                }
+                // Simpan relasi awal CPL yang berelasi dengan Matkul
+                const relasiCplData = await getRelasiCplMatkul(matkulDetail.ID);
+                setRelasiCpl(relasiCplData);
+                const relatedCplIds = relasiCplData.map((item) => item.ID);
+                setSelectedCPLs(relatedCplIds);
+                setInitialCPLs(relatedCplIds);
+
+                // if (matkulDetail.Cpl && matkulDetail.Cpl.length > 0) {
+                //     const relatedCplIds = matkulDetail.Cpl.map((cpl) => cpl.ID);
+                //     setSelectedCPLs(relatedCplIds);
+                //     setInitialCPLs(relatedCplIds); // Simpan relasi awal
+                // }
 
                 // Ambil data CPL berdasarkan ProdiId dan KurikulumId
                 const { ProdiId, KurikulumId } = matkulDetail;
@@ -166,8 +174,8 @@ export default function DetailMatkulPage() {
                             <div>
                                 <p>
                                     <strong>Capaian Pembelajaran Lulusan:</strong>{' '}
-                                    {matkul.Cpl?.length > 0
-                                        ? matkul.Cpl.map((cpl) => cpl.Kode).join(', ')
+                                    {relasiCpl.length > 0
+                                        ? relasiCpl.map((cpl) => cpl.KodeCpl).join(', ')
                                         : <span className="text-gray-400 italic">Belum dipilih</span>}
                                 </p>
                             </div>
